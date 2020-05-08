@@ -1,0 +1,17 @@
+name: notify
+on:
+  push:
+    branches:
+      - feat/workflow-slack
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Send notification to Slack when master/docs has been updated
+        uses: pullreminders/slack-action@v1
+        with:
+          args: '{\"channel\":\"CTXFXLL12\", \"text\":\"develop merged :merged:\"}'
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
