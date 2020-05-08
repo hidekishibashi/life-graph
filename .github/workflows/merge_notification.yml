@@ -1,4 +1,4 @@
-name: notify
+name: Develop Merge Notification
 on:
   push:
     branches:
@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Send notification to Slack when master/docs has been updated
-        uses: pullreminders/slack-action@v1
+        uses: pullreminders/slack-action@master
         with:
           args: '{\"channel\":\"CTXFXLL12\", \"text\":\"develop merged :merged:\"}'
         env:
