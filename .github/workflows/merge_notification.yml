@@ -13,9 +13,6 @@ jobs:
         uses: pullreminders/slack-action@master
         with:
           args: |
-           '{
-             "channel": "CTXFXLL12",
-             "text": "develop merged"
-            }'
+           '{ "channel": "CTXFXLL12", "text": "develop merged" }'
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
