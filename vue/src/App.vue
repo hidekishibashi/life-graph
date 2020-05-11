@@ -9,6 +9,7 @@
       </router-link>
     </div>
     <router-view />
+    <Chart />
   </div>
 </template>
 
