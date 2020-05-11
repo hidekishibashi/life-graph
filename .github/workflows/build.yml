@@ -42,8 +42,8 @@ jobs:
       if: failure()
       uses: rtCamp/action-slack-notify@master
       env:
-        SLACK_CHANNEL: notification
-        SLACK_USERNAME: build-check-teamX
+        SLACK_CHANNEL: チーム福飯
+        SLACK_USERNAME: build-check-チーム福飯
         SLACK_ICON_EMOJI: ':man-gesturing-no:'
         SLACK_COLOR: '#ff0000'
         SLACK_MESSAGE: |
