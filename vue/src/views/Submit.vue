@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div>
     <button src="../">
       戻る
     </button>
@@ -11,11 +11,10 @@
 
 <script>
 
-
 export default {
   name: 'Submit',
   components: {
     Submit
-  },
+  }
 }
 </script>
