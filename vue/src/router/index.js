@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
 Vue.use(VueRouter)
 
 const routes = [
@@ -14,6 +13,13 @@ const routes = [
     //   return import(/* webpackChunkName: "top" */ '../views/Top.vue')
   },
   {
+    path: '/login', // new add
+    name: 'Login', // new add
+    component: function () {
+      return import(/* webpackChunkName: "about" */ '../views/Login.vue')
+    }
+  },
+  {
     path: '/about',
     name: 'About',
     //  route level code-splitting
@@ -22,7 +28,6 @@ const routes = [
     component: function () {
       return import(/* webpackChunkName: "about" */ '../views/About.vue')
     }
-    // path: '/'
   }
 ]
 

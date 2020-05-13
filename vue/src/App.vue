@@ -1,5 +1,6 @@
 <template>
-  <v-app>
+  <v-app id="app">
+    <!-- <v-app>
     <v-app-bar
       app
       color="primary"
@@ -42,17 +43,24 @@
       <Top />
       <router-link to="/top" />
     </v-content>
+    </v-content>
+  </v-app> -->
+    <Home />
+    <Login />
+    <router-link to="/login" />
   </v-app>
 </template>
 
 <script>
 import Top from './views/Top'
+import Login from './views/Login.vue'
 
 export default {
   name: 'App',
 
   components: {
-    Top
+    Top,
+    Login
   },
 
   data: () => ({
