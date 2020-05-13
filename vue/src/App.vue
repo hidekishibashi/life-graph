@@ -1,6 +1,5 @@
 <template>
-  <v-app id="app">
-    <!-- <v-app>
+  <v-app>
     <v-app-bar
       app
       color="primary"
@@ -39,32 +38,26 @@
     </v-app-bar>
 
     <v-content>
-      <HelloWorld />
-      <Top />
-      <router-link to="/top" />
+      <Chart />
+      <New />
+      <rooter-link to="/new" />
+      <Login />
+      <router-link to="/login" />
     </v-content>
-    </v-content>
-  </v-app> -->
-    <Home />
-    <Login />
-    <router-link to="/login" />
   </v-app>
 </template>
 
 <script>
-import Top from './views/Top'
+import Chart from '../src/chart/Chart.vue'
+import New from '../src/views/New.vue'
 import Login from './views/Login.vue'
 
 export default {
   name: 'App',
-
   components: {
-    Top,
+    Chart,
+    New,
     Login
-  },
-
-  data: () => ({
-    //
-  })
+  }
 }
 </script>
