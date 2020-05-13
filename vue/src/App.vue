@@ -38,18 +38,23 @@
     </v-app-bar>
 
     <v-content>
-      <Chart />
+      <HelloWorld />
     </v-content>
   </v-app>
 </template>
 
 <script>
-import Chart from '../src/chart/Chart.vue'
+import HelloWorld from './components/HelloWorld'
 
 export default {
   name: 'App',
+
   components: {
-    Chart
-  }
+    HelloWorld
+  },
+
+  data: () => ({
+    //
+  })
 }
 </script>
