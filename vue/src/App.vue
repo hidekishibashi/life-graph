@@ -40,6 +40,9 @@
 
     <v-content>
       <HelloWorld />
+      <Top />
+      <router-link to="/top" />
+    </v-content>
     </v-content>
   </v-app> -->
     <Home />
@@ -49,12 +52,14 @@
 </template>
 
 <script>
+import Top from './views/Top'
 import Login from './views/Login.vue'
 
 export default {
   name: 'App',
 
   components: {
+    Top,
     Login
   },
 
