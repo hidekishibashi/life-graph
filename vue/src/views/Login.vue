@@ -1,36 +1,67 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">
-        Home
-      </router-link> |
-      <router-link to="/about">
-        About
-      </router-link>
-    </div>
-    <router-view />
+  <div id="login">
+    <v-card width="400px" class="mx-auto" >
+    <v-card-title>
+      <h1 class="mx-auto">ログイン</h1>
+    </v-card-title>
+    <v-card-text>
+      <v-form>
+        <v-text-field type="mail" prepend-icon="mdi-gmail" label="メールアドレス" />
+        <v-text-field type="password" prepend-icon="mdi-lock" append-icon="mdi-eye-off" label="パスワード" />
+        <v-card-actions>
+          <!-- ボタンのカラー変更は調査中 -->
+    <v-btn color="teal">新規登録</v-btn>
+    <v-spacer />
+    <v-btn  color="pink">ログイン</v-btn>
+  </v-card-actions>
+      </v-form>
+    </v-card-text>
+  </v-card>
   </div>
 </template>
 
-<style>
-#app {
-  color: #2c3e50;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-}
+<style scoped>
+</style>
 
-#nav {
-  padding: 30px;
-}
+<script>
 
-#nav a {
-  color: #2c3e50;
-  font-weight: bold;
-}
+export default {
+  layout: 'blank', // layouts/blank.vueを使用
+  middleware: ['auth'],
+  data () {
+    return {
+      valid: true,
+      email: '',
+      password: '',
+      error: null
+    }
+  },
+  methods: {
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+    async login () {
+      this.error = null
+
+      if (this.$refs.form.validate()) {
+        return this.$auth
+          .loginWith('local', {
+            data: {
+              email: this.email,
+              password: this.password
+            }
+          })
+          .catch(e => {
+            this.error = 'ログインに失敗しました。IDかパスワードが間違っている可能性があります。'
+          })
+      }
+    }
+  },
+  head () {
+    return {
+      title: 'ログイン'
+    }
+  }
 }
+</script>
+<style scoped>
+
 </style>
