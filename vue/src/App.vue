@@ -1,5 +1,6 @@
 <template>
-  <v-app>
+  <v-app id="app">
+    <!-- <v-app>
     <v-app-bar
       app
       color="primary"
@@ -40,17 +41,21 @@
     <v-content>
       <HelloWorld />
     </v-content>
+  </v-app> -->
+    <Home />
+    <Login />
+    <router-link to="/login" />
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import Login from './views/Login.vue'
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld
+    Login
   },
 
   data: () => ({
