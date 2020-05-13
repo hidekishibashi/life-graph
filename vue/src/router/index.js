@@ -1,17 +1,23 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/top',
     name: 'Top',
     component: function () {
       return import(/* webpackChunkName: "about" */ '../views/Top.vue')
     }
     // function () {
     //   return import(/* webpackChunkName: "top" */ '../views/Top.vue')
+  },
+  {
+    path: '/login', // new add
+    name: 'Login', // new add
+    component: function () {
+      return import(/* webpackChunkName: "about" */ '../views/Login.vue')
+    }
   },
   {
     path: '/about',

@@ -38,26 +38,26 @@
     </v-app-bar>
 
     <v-content>
-      <HelloWorld />
-
       <Chart />
       <New />
       <rooter-link to="/new" />
+      <Login />
+      <router-link to="/login" />
     </v-content>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
 import Chart from '../src/chart/Chart.vue'
 import New from '../src/views/New.vue'
+import Login from './views/Login.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
     Chart,
-    New
+    New,
+    Login
   }
 }
 </script>
