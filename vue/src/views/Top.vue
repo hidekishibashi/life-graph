@@ -131,6 +131,9 @@ export default {
   position:absolute;
   top:400px;
   right:200px;
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
 }
 
 #topSearchBef   {
@@ -306,11 +309,5 @@ export default {
 
   background: #64D8CB;
   border-radius: 2px;
-}
-
-#topChart     {
-  width: 300px;
-  height: 300px;
-  margin: 0 auto;
 }
 </style>
