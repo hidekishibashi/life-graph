@@ -1,9 +1,9 @@
 <template>
   <div id="reference">
     <router-link to="">
-    <v-btn id="returnBtn">
-      戻る
-    </v-btn>
+      <v-btn id="returnBtn">
+        戻る
+      </v-btn>
     </router-link>
     <div id="refChart">
       <Chart />
