@@ -26,7 +26,6 @@ export default {
 <style>
 #returnBtn    {
   background: #FFFFFF;
-  font-family: Roboto;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;

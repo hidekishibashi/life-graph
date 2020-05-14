@@ -192,7 +192,6 @@ export default {
   left: 0px;
   top: 20px;
 
-  font-family: Roboto;
   font-style: normal;
   font-weight: bold;
   font-size: 36px;
@@ -208,7 +207,6 @@ export default {
   left: 0px;
   top: 20px;
 
-  font-family: Roboto;
   font-style: normal;
   font-weight: bold;
   font-size: 36px;
@@ -224,7 +222,6 @@ export default {
   left: 0px;
   top: 20px;
 
-  font-family: Roboto;
   font-style: normal;
   font-weight: bold;
   font-size: 36px;
@@ -240,7 +237,6 @@ export default {
   left: 0px;
   top: 100px;
 
-  font-family: Roboto;
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -256,7 +252,6 @@ export default {
   left: 0px;
   top: 100px;
 
-  font-family: Roboto;
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -272,7 +267,6 @@ export default {
   left: 0px;
   top: 100px;
 
-  font-family: Roboto;
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
