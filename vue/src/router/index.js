@@ -5,8 +5,8 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/', // new add
-    name: 'Login', // new add
+    path: '/top',
+    name: 'Top',
     component: function () {
       return import(/* webpackChunkName: "about" */ '../views/Login.vue')
     }
@@ -35,6 +35,20 @@ const routes = [
     //  which is lazy-loaded when the route is visited.
     component: function () {
       return import(/* webpackChunkName: "about" */ '../views/About.vue')
+    }
+  },
+  {
+    path: '/new',
+    name: 'New',
+    component: function () {
+      return import(/* webpackChunkName: "about" */ '../views/New.vue')
+    }
+  },
+  {
+    path: '/reference',
+    name: 'Reference',
+    component: function () {
+      return import(/* webpackChunkName: "about" */ '../views/Reference.vue')
     }
   }
 ]

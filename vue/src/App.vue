@@ -1,6 +1,6 @@
 <template>
-  <v-app id="app">
-    <!-- <v-app-bar
+  <v-app>
+    <v-app-bar
       app
       color="primary"
       dark
@@ -37,22 +37,34 @@
       </v-btn>
     </v-app-bar> -->
 
-    <router-view />
+    <v-content>
+      <Top />
+      <router-link to="/top" />
+      <Chart />
+      <New />
+      <rooter-link to="/new" />
+      <Login />
+      <router-link to="/login" />
+      <Reference />
+    </v-content>
   </v-app>
 </template>
 
 <script>
-// import Login from './views/Login.vue'
+import Top from '../src/views/Top.vue'
+import Chart from '../src/chart/Chart.vue'
+import New from '../src/views/New.vue'
+import Login from './views/Login.vue'
+import Reference from './views/Reference.vue'
 
-// export default {
-//   name: 'App',
-
-//   components: {
-//     Login
-//   },
-
-//   data: () => ({
-//     //
-//   })
-// }
+export default {
+  name: 'App',
+  components: {
+    Top,
+    Chart,
+    New,
+    Login,
+    Reference
+  }
+}
 </script>

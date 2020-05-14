@@ -1,3 +1,7 @@
+.project
+.settings
+node_modules
+
 # Compiled class file
 *.class
 
