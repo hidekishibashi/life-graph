@@ -35,6 +35,13 @@ const routes = [
     component: function () {
       return import(/* webpackChunkName: "about" */ '../views/New.vue')
     }
+  },
+  {
+    path: '/reference',
+    name: 'Reference',
+    component: function () {
+      return import(/* webpackChunkName: "about" */ '../views/Reference.vue')
+    }
   }
 ]
 

@@ -38,26 +38,33 @@
     </v-app-bar>
 
     <v-content>
+      <Top />
+      <router-link to="/top" />
       <Chart />
       <New />
       <rooter-link to="/new" />
       <Login />
       <router-link to="/login" />
+      <Reference />
     </v-content>
   </v-app>
 </template>
 
 <script>
+import Top from '../src/views/Top.vue'
 import Chart from '../src/chart/Chart.vue'
 import New from '../src/views/New.vue'
 import Login from './views/Login.vue'
+import Reference from './views/Reference.vue'
 
 export default {
   name: 'App',
   components: {
+    Top,
     Chart,
     New,
-    Login
+    Login,
+    Reference
   }
 }
 </script>
