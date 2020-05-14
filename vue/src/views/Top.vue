@@ -125,7 +125,7 @@ export default {
 // }
 </script>
 <style>
-#topChart {
+/* #topChart {
   position:absolute;
   top:400px;
   right:200px;}
@@ -191,8 +191,7 @@ export default {
   font-size: 36px;
   line-height: 42px;
 
-  color: #FFFFFF;
-  }
+  color: #FFFFFF;}
 
 #entryTitle   {
   position: absolute;
@@ -207,8 +206,7 @@ export default {
   font-size: 36px;
   line-height: 42px;
 
-  color: #777575;
-  }
+  color: #777575;}
 
 #editTitle      {
   position: absolute;
@@ -238,8 +236,7 @@ export default {
   font-size: 24px;
   line-height: 28px;
 
-  color: #FFFFFF;
-  }
+  color: #FFFFFF;}
 
 #entrySubtitle  {
   position: absolute;
@@ -304,5 +301,5 @@ export default {
 #topChart     {
   width: 300px;
   height: 300px;
-  margin: 0 auto;}
+  margin: 0 auto;} */
 </style>
