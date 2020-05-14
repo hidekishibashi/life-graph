@@ -17,10 +17,9 @@
           <!-- mdi-eye-offの部分はブラッシュアップにまわす -->
           <v-text-field type="password" prepend-icon="mdi-lock" append-icon="mdi-eye-off" label="パスワード" />
           <v-card-actions>
-            <v-btn large color="#26A69A" class="signup-btn" to="/Top">
+            <v-btn large color="#26A69A" class="signup-btn" to="/top">
               新規登録
             </v-btn>
-            <!-- <v-btn  color="pink">ログイン</v-btn> -->
           </v-card-actions>
         </v-form>
       </v-card-text>
@@ -32,54 +31,16 @@
 </style>
 
 <script>
-
-export default {
-  layout: 'blank', // layouts/blank.vueを使用
-  middleware: ['auth'],
-  data () {
-    return {
-      valid: true,
-      email: '',
-      password: '',
-      error: null
-    }
-  },
-  methods: {
-
-    async login () {
-      this.error = null
-
-      if (this.$refs.form.validate()) {
-        return this.$auth
-          .loginWith('local', {
-            data: {
-              email: this.email,
-              password: this.password
-            }
-          })
-          .catch(e => {
-            this.error = 'ログインに失敗しました。IDかパスワードが間違っている可能性があります。'
-          })
-      }
-    }
-  },
-  head () {
-    return {
-      title: 'ログイン'
-    }
-  }
-}
+//
 </script>
 <style>
 .logo{
   text-align: center;
   margin: 60px;
 }
-
 /* 新規登録ボタンの文字色と配置 */
 .theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined){
   color:white;
   margin-left:auto;
 }
-
 </style>

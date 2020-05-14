@@ -5,8 +5,8 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/top',
-    name: 'Top',
+    path: '/', // new add
+    name: 'Login', // new add
     component: function () {
       return import(/* webpackChunkName: "about" */ '../views/Login.vue')
     }
