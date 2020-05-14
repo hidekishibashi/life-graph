@@ -1,7 +1,6 @@
 <template>
   <v-app id="app">
-    <!-- <v-app>
-    <v-app-bar
+    <!-- <v-app-bar
       app
       color="primary"
       dark
@@ -36,30 +35,24 @@
         <span class="mr-2">Latest Release</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
-    </v-app-bar>
+    </v-app-bar> -->
 
-    <v-content>
-      <HelloWorld />
-    </v-content>
-  </v-app> -->
-    <Home />
-    <Login />
-    <router-link to="/login" />
+    <router-view />
   </v-app>
 </template>
 
 <script>
-import Login from './views/Login.vue'
+// import Login from './views/Login.vue'
 
-export default {
-  name: 'App',
+// export default {
+//   name: 'App',
 
-  components: {
-    Login
-  },
+//   components: {
+//     Login
+//   },
 
-  data: () => ({
-    //
-  })
-}
+//   data: () => ({
+//     //
+//   })
+// }
 </script>
