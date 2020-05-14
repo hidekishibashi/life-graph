@@ -1,10 +1,6 @@
 .project
 .settings
 node_modules
-Servers
-api/bin/src/main/java
-api/bin/src/test
-api/bin/.mvn
 
 # Compiled class file
 *.class
