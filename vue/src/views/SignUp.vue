@@ -1,24 +1,26 @@
 <template>
-  <div id="login">
-    <v-card width="400px" class="mx-auto">
+  <div id="signUp">
+    <div class="logo">
+      <img src="../assets/lifeChartLogo.svg">
+    </div>
+    <!-- pxのpはpadding, mxのmはmargin, xyは横縦, 数字は大きさに対応 -->
+    <v-card width="500px" class="spacing-playground px-10 py-10 mx-auto my-10">
       <v-card-title>
         <h1 class="mx-auto">
-          ログイン
+          新規登録
         </h1>
       </v-card-title>
       <v-card-text>
         <v-form>
+          <v-text-field type="userName" prepend-icon="mdi-account-circle" label="アカウント名" />
           <v-text-field type="mail" prepend-icon="mdi-gmail" label="メールアドレス" />
+          <!-- mdi-eye-offの部分はブラッシュアップにまわす -->
           <v-text-field type="password" prepend-icon="mdi-lock" append-icon="mdi-eye-off" label="パスワード" />
           <v-card-actions>
-            <!-- ボタンのカラー変更は調査中 -->
-            <v-btn color="teal">
+            <v-btn large color="#26A69A" class="signup-btn" to="/Top">
               新規登録
             </v-btn>
-            <v-spacer />
-            <v-btn color="pink">
-              ログイン
-            </v-btn>
+            <!-- <v-btn  color="pink">ログイン</v-btn> -->
           </v-card-actions>
         </v-form>
       </v-card-text>
@@ -74,8 +76,10 @@ export default {
   margin: 60px;
 }
 
-/* ログインボタンの文字色 */
+/* 新規登録ボタンの文字色と配置 */
 .theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined){
   color:white;
+  margin-left:auto;
 }
+
 </style>
