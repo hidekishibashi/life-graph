@@ -10,7 +10,9 @@
           />
         </v-col>
       </v-row>
-
+      <router-link to="/reference">
+        参照画面
+      </router-link>
       <!-- 検索結果の画面 -->
       <v-card
         max-width="700"

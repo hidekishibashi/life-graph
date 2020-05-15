@@ -29,7 +29,6 @@
     </v-card>
   </div>
 </template>
-
 <script>
 // sriptはブラッシュアップに回します
 // export default {
