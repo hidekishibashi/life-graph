@@ -18,13 +18,13 @@ import lombok.Data;
 //
 @Entity
 @Table( name = "Child_Chart",
-		uniqueConstraints = {
-			@UniqueConstraint(columnNames = "parent_id"),
-			@UniqueConstraint(columnNames = "age")
-		})
+	uniqueConstraints = {
+		@UniqueConstraint(columnNames = "parent_id"),
+		@UniqueConstraint(columnNames = "age")
+	})
 
 public class LifeGraph {
-	@Id
+  @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private long id;
