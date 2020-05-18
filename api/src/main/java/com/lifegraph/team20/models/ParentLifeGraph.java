@@ -20,8 +20,8 @@ import lombok.Data;
 @Data
 @Entity
 @Table (name = "Parent_Chart",
-		uniqueConstraints = {
-		@UniqueConstraint(columnNames = "user_id")})
+	uniqueConstraints = {
+	@UniqueConstraint(columnNames = "user_id")})
 
 public class ParentLifeGraph {
 	@Id
@@ -44,7 +44,7 @@ public class ParentLifeGraph {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "parent", orphanRemoval=true)
 	@JsonIgnore
 	static
-     List<LifeGraph> lifeGraph;
+    List<LifeGraph> lifeGraph;
 
 	public ParentLifeGraph(long user_id, java.sql.Timestamp createdAtTime, java.sql.Timestamp updatedAtTime) {
 		this.user_id = user_id;
