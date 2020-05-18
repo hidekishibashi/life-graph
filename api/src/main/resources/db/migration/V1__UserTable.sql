@@ -35,17 +35,6 @@ CREATE TABLE `user_roles` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=UTF8MB4;
 
 
-INSERT INTO `users` (
-  `username`,
-  `password`,
-  `email`
---  `role`
-) VALUES
-  ('taro', '12345', 'seattle'),
-  ('Hanako', 'pass', 'academy'),
-  ('Yamada', '12345', 'mountain'),
-  ('Taro', 'Gogogo', 'desk');
-
 
 INSERT INTO `roles` (
   `name`
