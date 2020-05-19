@@ -102,6 +102,44 @@
     <!-- <SearchIput />
     <SearchResults /> -->
     </v-container>
+ <head>
+    <title>売上</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  </head>
+  <body>
+    <form method="post">
+      <table>
+        <tr><td>売上ID : <input type="text" class="form-control" id="sales_id" name="salesId" th:value="${salesId}"/></td></tr>
+        <tr><td>顧客ID : <input type="text" class="form-control" id="customer_id" name="customerId" th:value="${customerId}"/></td></tr>
+        <tr><td>商品ID : <input type="text" class="form-control" id="goods_id" name="goodsId" th:value="${goodsId}"/></td></tr>
+        <tr><td><input type="submit" value="検索"/></td></tr>
+      </table>
+    </form>
+      <table border="1">
+        <tr>
+          <td>売上ID</td>
+          <td>売上明細番号</td>
+          <td>顧客ID</td>
+          <td>顧客名</td>
+          <td>商品ID</td>
+          <td>商品名</td>
+          <td>数量</td>
+          <td>売上金額</td>
+          <td>売上日時</td>
+        </tr>
+        <tr th:each="data : ${result}">
+          <td th:text="${data.salesId}"/>
+          <td th:text="${data.salesDetailNo}"/>
+          <td th:text="${data.customerId}"/>
+          <td th:text="${data.customer.customerName}"/>
+          <td th:text="${data.userId}"/>
+          <td th:text="${data.user.userName}"/>
+          <td th:text="${data.quantity}"/>
+          <td th:text="${#numbers.formatInteger(data.amount, 3, 'COMMA')}"/>
+          <td th:text="${#dates.format(data.salesDate, 'yyyy/MM/dd HH:mm')}"/>
+        </tr>
+      </table>
+  </body>
   </v-app>
 </template>
 

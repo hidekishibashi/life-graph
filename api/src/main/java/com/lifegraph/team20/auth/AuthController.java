@@ -14,3 +14,17 @@ public class AuthController {
     return ResponseEntity.ok("OK");
   }
 }
+
+
+//@RequestMapping(value = "/sample", method = RequestMethod.GET)
+//public List<GoodsController> userData() {
+//	List<GoodsController> goodsController = setGoodsController();
+//	return goodsController;
+//
+//}
+
+
+//private List<GoodsController> setGoodsController() {
+//	final String sql ="select * from User innner join "
+//	return null;
+//}
