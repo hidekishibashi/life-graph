@@ -81,7 +81,7 @@
       </v-toolbar>
       <v-divider />
       <v-expand-transition>
-        <v-content v-if="model" class="#26A69A">
+        <v-content v-if="model">
           <v-card v-for="(field, i) in fields"
                   :key="i"
                   color="#26A69A"
