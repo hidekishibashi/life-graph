@@ -174,27 +174,28 @@ export default {
       this.isLoading = true
 
       // Lazily load input items
-      fetch('https://api.publicapis.org/entries')
-        .then(res => res.json())
-        .then(res => {
-          const { username, updatedAt, createdAt } = res
-          this.username = username
-          this.updatedAt = updatedAt
-          this.createdAt = createdAt
-        })
-        .catch(err => {
-          console.log(err)
-        })
-        .finally(() => (this.isLoading = false))
-    }
-  },
-  methods: {
-    getDates: (dates) => {
-      console.log(dates) // Object {startDate: "2017-12-25T00:00:00+09:00", endDate: "2018-01-22T00:00:00+09:00"}
-      // 取得した日付をイベントに渡す
-    },
-    filter (val, search) {
-      return val === search
+    //   fetch('https://api.publicapis.org/entries')
+    //     .then(res => res.json())
+    //     .then(res => {
+    //       const { username, updatedAt, createdAt } = res
+    //       this.username = username
+    //       this.updatedAt = updatedAt
+    //       this.createdAt = createdAt
+    //     })
+    //     .catch(err => {
+    //       console.log(err)
+    //     })
+    //     .finally(() => (this.isLoading = false))
+    // }
+  // },
+  // methods: {
+  //   getDates: (dates) => {
+  //     console.log(dates) // Object {startDate: "2017-12-25T00:00:00+09:00", endDate: "2018-01-22T00:00:00+09:00"}
+  //     // 取得した日付をイベントに渡す
+  //   },
+  //   filter (val, search) {
+  //     return val === search
+  //   }
     }
   }
 }
