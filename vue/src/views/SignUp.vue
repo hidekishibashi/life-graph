@@ -56,12 +56,6 @@ export default {
           email: this.email,
           password: this.password
         })
-          .then(function (res) {
-            console.log(res)
-          })
-          .catch(function (error) {
-            console.log(error)
-          })
         this.$router.push('/')
       }
     }
