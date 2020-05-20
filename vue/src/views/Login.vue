@@ -14,19 +14,20 @@
         <v-form
           ref="form"
         >
-          <v-text-field v-model="username" type="username" prepend-icon="mdi-gmail" label="ユーザーネーム" :rules="[required]" />
+          <v-text-field v-model="username" type="username" prepend-icon="mdi-gmail" label="ユーザーネーム" :rules="[required]" color="teal" />
           <!-- mdi-eye-offの部分は時間がなければなくします -->
-          <v-text-field v-model="password" type="password" prepend-icon="mdi-lock" append-icon="mdi-eye-off" label="パスワード" :rules="[required]" />
+          <v-text-field v-model="password" :type="show ? 'text' : 'password'" :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'" prepend-icon="mdi-lock" label="パスワード" :rules="[required]" color="teal" @click:append="show = !show" />
           <v-card-actions>
             <v-btn outlined large color="#26A69A" to="/signup">
-              新規登録
+              新規登録はこちら
             </v-btn>
             <v-spacer />
             <v-btn large color="#26A69A" class="log-btn" @click="login()">
-              ログイン
+              ログインする
             </v-btn>
           </v-card-actions>
         </v-form>
+        <p>*登録済みの方はユーザーネームとパスワードを入力するとログインができます</p>
       </v-card-text>
     </v-card>
   </div>
@@ -44,7 +45,8 @@ export default {
     //   return pattern.test(value) || 'メールアドレスの形式が正しくありません'
     // },
     password: '',
-    required: value => !!value || '必ず入力してください'
+    required: value => !!value || '必ず入力してください',
+    show: false
   }),
   // token関数でtokenの値を取得する
   computed: {
