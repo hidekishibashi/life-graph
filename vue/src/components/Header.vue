@@ -18,7 +18,7 @@
         </v-btn>
         <v-btn
           text
-          to="/search"
+          to="/life-graph/lists"
         >
           検索
         </v-btn>
