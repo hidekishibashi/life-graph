@@ -18,7 +18,7 @@
         </v-btn>
         <v-btn
           text
-          to="/Search.vue"
+          to="/search"
         >
           検索
         </v-btn>
