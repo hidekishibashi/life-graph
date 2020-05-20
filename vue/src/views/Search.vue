@@ -29,17 +29,17 @@
         <v-col cols="4" sm="4">
           <v-card-text>
             <vue-daterange-picker
-          dates-format="YYYY/MM/DD"
-          format="YYYY/MM/DD"
-          title-format="YYYY年 M月"
-          :items="searchByData"
-          :start-date="oneYearAgo"
-          :end-date="today"
-          label="更新日時から検索"
-          start-place-holder=""
-          end-place-holder=""
-          @get-dates="getDates"
-        />
+              dates-format="YYYY/MM/DD"
+              format="YYYY/MM/DD"
+              title-format="YYYY年 M月"
+              :items="searchByData"
+              :start-date="oneYearAgo"
+              :end-date="today"
+              label="更新日時から検索"
+              start-place-holder=""
+              end-place-holder=""
+              @get-dates="getDates"
+            />
           </v-card-text>
         </v-col>
       </v-row>
