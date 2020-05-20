@@ -53,7 +53,7 @@ const routes = [
     }
   },
   {
-    path: '/search',
+    path: '/life-graph/lists',
     name: 'Search',
     component: function () {
       return import(/* webpackChunkName: "about" */ '../views/Search.vue')
