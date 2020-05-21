@@ -4,6 +4,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,17 +28,16 @@ public class LifeGraphsController {
     // サービスを呼ぶ
     service.resister(data);
 
-
     return ResponseEntity.created(null).build();
   }
 
-//  @RequestMapping(value = "/auth/delete", method = RequestMethod.DELETE)
-//  public ResponseEntity<Void> deleteController(@Valid @RequestBody LifeGraphData data.getUserId()) {
-//
-//
-//    service.deleteChild(data.getUserId());
-//
-//      return ResponseEntity.ok("OK");
-//  }
+	@DeleteMapping(value = "/auth/{id}")
+	public ResponseEntity<Void> deleteTable(@PathVariable("id") long Id, @RequestBody LifeGraphData data) {
+
+	  // call delete
+    service. deleteChild(Id,data);
+
+    return ResponseEntity.created(null).build();
+  }
 }
 

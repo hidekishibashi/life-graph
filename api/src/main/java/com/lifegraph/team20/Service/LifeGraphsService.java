@@ -78,18 +78,15 @@ public class LifeGraphsService {
 
   }
 
+  public void deleteChild(long Id, LifeGraphData data) {
 
-//  private void deleteChild(long parentId) {
-//    // userIdが一致するかどうか確認する
-//    if(childRepository.selectChild(parentId) == parentId) {
-//
-//      // 一致すればメソッドが実行される
-//      childRepository.deleteChild(parentId);
-//
-//    } else {
-//
-//      // 一致しなければエラーステータス
-//
-//    }
-//  }
+   // userIdが一致するかどうか確認する
+   if(childRepository.existsByUserId(data.getUserId())) {
+
+   // 一致すればメソッドが実行される
+     childRepository.deleteChild(data.getId());
+   }
+    // 一致しなければエラーステータス
+
+  }
 }
