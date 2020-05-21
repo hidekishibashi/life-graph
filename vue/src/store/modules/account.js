@@ -15,7 +15,6 @@ export default {
   actions: {
     async accountAction ({ commit }, userId) {
       const url = 'api/auth/accounts/' + userId
-      console.log(url)
       await axios.get(url).then((res) => {
         commit('setAccountInfo', res.data)
       })
