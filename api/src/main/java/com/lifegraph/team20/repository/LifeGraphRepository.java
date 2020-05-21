@@ -24,18 +24,16 @@ public class LifeGraphRepository {
 
     // ageが重複しているか確認したい
     // リクエストできたageが同じユーザーのレコードに既に存在しているか
-    public Integer selectChild(int age) {
-      final String sql = "select count(*) from child_chart where age = " + age;
+    public Integer selectChild(long id) {
+      final String sql = "select count(*) from child_chart where user_id = " + id ;
       Integer count = jdbcTemplate.queryForObject(sql, Integer.class);
       return count;
     }
 
     // 子テーブルのレコードを編集する
-    // IDを持つ必要がある？？
       public void updateChild(long id, int age, int score, String comment) {
         String sql = "update child_chart set age = " + age + " , score = " + score + " , comment = '" + comment + "' where id = " + id;
         jdbcTemplate.update(sql);
-//        jdbcTemplate.update("update child_chart set age = " + age + " , score = " + score + " , comment = '" + comment + "' where id = " + id);
       }
 
     // 子テーブルにレコードを追加する
@@ -44,9 +42,14 @@ public class LifeGraphRepository {
           + score +  ",'" + comment + "')");
     }
 
-    // テーブルのデータを削除する
-    public void deleteChild(long userId) {
-        jdbcTemplate.update("delete from parent_chart as pc innner join child_chart as cc on pc.id = cc.parent_id where user_id =  " + userId);
+    // // 親子テーブルのデータを削除する
+    // public void deleteLifeGraph(long userId, long parentId) {
+    //     jdbcTemplate.update("delete from parent_chart where user_id = " + userId + " and id = " + parentId);
+    // }
+
+    // 子テーブルのデータを削除する
+    public void deleteChild(long id) {
+      jdbcTemplate.update("delete from child_chart where id = " + id);
     }
 
     // 更新日時を更新する
@@ -54,8 +57,11 @@ public class LifeGraphRepository {
      jdbcTemplate.update("update parent_chart set updated_at = now() where user_id =" + userId);
     }
 
-
-
+    public Boolean existsByUserId(long userId) {
+        final String sql = "select count(( user_id = " + userId + ") or null) from parent_chart";
+        Integer count = jdbcTemplate.queryForObject(sql, Integer.class);
+        return 1 <= count;
+    }
 
 }
 
