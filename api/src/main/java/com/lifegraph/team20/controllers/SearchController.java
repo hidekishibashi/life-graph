@@ -19,7 +19,7 @@ import com.lifegraph.team20.models.SearchGraphInfo;
 @RestController
 public class SearchController {
 
-	@RequestMapping(value = "/auth/lifegraphs", method = RequestMethod.GET)
+	@RequestMapping(value = "/auth/life-graphs", method = RequestMethod.GET)
 // SearchGraphInfoから検索ページに必要な要素を引っ張ってきて、反映。 l.37はl.50に影響している。　　　likeNameを引数にしてあいまい検索を行えるようにしている。　バックだけでは引数"私"のようなものがない為、フロントと繋げる必要あり。
 	public ResponseEntity<List<SearchGraphInfo>>SearchGraphInfos(@RequestParam("likeName") Optional<String>likeName,
 												@RequestParam("startDame") Optional<String>startDate,
