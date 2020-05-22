@@ -179,20 +179,20 @@ export default {
           const { name } = res
           this.name = name
         })
-        .catch(err => {
-          console.log(err)
-        })
-        .finally(() => (this.isLoading = false))
-    }
-  },
-  methods: {
-    getDates: (dates) => {
-      console.log(dates) // Object {startDate: "2017-12-25T00:00:00+09:00", endDate: "2018-01-22T00:00:00+09:00"}
-      // 取得した日付をイベントに渡す
-    },
-    filter (val, search) {
-      return val === search
-    }
+  //       .catch(err => {
+  //         console.log(err)
+  //       })
+  //       .finally(() => (this.isLoading = false))
+  //   }
+  // },
+  // methods: {
+  //   getDates: (dates) => {
+  //     console.log(dates) // Object {startDate: "2017-12-25T00:00:00+09:00", endDate: "2018-01-22T00:00:00+09:00"}
+  //     // 取得した日付をイベントに渡す
+  //   },
+  //   filter (val, search) {
+  //     return val === search
+  //   }
   }
 }
 </script>
