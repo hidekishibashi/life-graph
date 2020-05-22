@@ -1,9 +1,9 @@
 package com.lifegraph.team20.repository;
 
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -31,23 +31,22 @@ public class ParentLifeGraphRepository  {
     /**
      * 親グラフをユーザーIDを元に検索する ※ユーザーIDはユニークキー
      *
-     * @param userId ユーザーID
+     * @param userId ユーザーIDLi
      * @return 親グラフ
      */
     public Optional<ParentLifeGraph> findByUserId(long userId) {
       final String sql = "select * from parent_chart where user_id = " + userId;
       RowMapper<ParentLifeGraph> mapper = new BeanPropertyRowMapper<ParentLifeGraph>(ParentLifeGraph.class);
-      ArrayList<ParentLifeGraph> parentLifeGraphs = (ArrayList<ParentLifeGraph>) jdbcTemplate.query(sql, mapper);
-//      List<ParentLifeGraph> parentLifeGraphs = jdbcTemplate.queryForList(sql, ParentLifeGraph.class);
+      List<ParentLifeGraph> parentLifeGraphs = jdbcTemplate.query(sql, mapper);
       return CollectionUtils.isEmpty(parentLifeGraphs) ? Optional.empty() : Optional.of(parentLifeGraphs.get(0));
     }
 
-    // Idがあるかどうか確認する
-    public Boolean existsByUserId(long userId) {
-      final String sql = "select count(*) from parent_chart where user_id = " + userId;
-      Integer count = jdbcTemplate.queryForObject(sql, Integer.class);
-      return 1 <= count;
-    }
+    // // Idがあるかどうか確認する
+    // public Boolean existsByUserId(long userId) {
+    //   final String sql = "select count(*) from parent_chart where user_id = " + userId;
+    //   Integer count = jdbcTemplate.queryForObject(sql, Integer.class);
+    //   return 1 <= count;
+    // }
 
     // userIdがあるレコードのIdを取得する
     public long insert(long userId) {
