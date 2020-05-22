@@ -26,9 +26,9 @@ public class ReferenceController {
 
 	@GetMapping(value = "/auth/reference")
 	public ResponseEntity<List<ChildChart>> Child(
-			@RequestParam("ID") int ID){
+			@RequestParam("userID") int userID){
 //	Optional:その値がnullかもしれないことを表現するクラス/URLが叩かれたときにこれが動く/key IDに何も入らないとhttp400エラーになるから注意
-		List<ChildChart> Child = selectChilds(ID);  //子チャートをIDに定義 //selectChildsの定義をl.55へ
+		List<ChildChart> Child = selectChilds(userID);  //子チャートをIDに定義 //selectChildsの定義をl.55へ
 //			l.31のselectChildsを定義名Childで呼び出す
 		return ResponseEntity.ok(Child);
 	}
@@ -38,8 +38,8 @@ public class ReferenceController {
 	//MySQLのデータを持ってくるライブラリ
 	private JdbcTemplate jdbcTemplate;
 
-	public List<ChildChart> selectChilds(int ID) {
-		final String sql = "select * from child_chart where parent_id="+ID+"";
+	public List<ChildChart> selectChilds(int userID) {
+		final String sql = "select * from child_chart where parent_id=(select id from parent_chart where user_id ="+userID+")";
 
 		return jdbcTemplate.query(sql, new RowMapper<ChildChart>() {// <ChildChart>の中にそれぞれのデータを入れている
 
@@ -49,7 +49,6 @@ public class ReferenceController {
 			}
 		});
 	}
-
 
 	public List<Map<String, Object>> uploadGraph(List<ParentChart> graphs, List<ChildChart> data) {
 		List<Map<String, Object>> dataList = new ArrayList<Map<String, Object>>();
