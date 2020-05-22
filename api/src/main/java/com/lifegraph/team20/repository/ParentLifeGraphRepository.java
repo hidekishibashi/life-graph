@@ -1,6 +1,8 @@
 package com.lifegraph.team20.repository;
 
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -52,7 +54,10 @@ public class ParentLifeGraphRepository  {
       SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
       jdbcInsert.withTableName("parent_chart").usingGeneratedKeyColumns("id");
       Map<String, Object> parameters = new HashMap<>();
+      Date date = new Date();
       parameters.put("user_id", userId);
+      parameters.put("created_at", date);
+      parameters.put("updated_at", date);
       // execute insert
       Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
       // convert Number to Int using ((Number) key).intValue()
