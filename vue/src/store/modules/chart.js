@@ -7,7 +7,33 @@ Vue.use(Vuex)
 export default {
   namespaced: true, // 名前空間
   state: {
-    contents: [],
+    contents: [
+      {
+        age: 10,
+        score: 60,
+        comment: 'おおおおおおお'
+      },
+      {
+        age: 20,
+        score: 20,
+        comment: 'おおおおおおお'
+      },
+      {
+        age: 30,
+        score: 40,
+        comment: 'おおおおおおお'
+      },
+      {
+        age: 50,
+        score: 100,
+        comment: 'おおおおおおお'
+      },
+      {
+        age: 80,
+        score: 90,
+        comment: 'おおおおおおお'
+      }
+    ],
     load: false,
     loaded: true
   },

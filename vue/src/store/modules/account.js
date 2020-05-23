@@ -7,11 +7,11 @@ Vue.use(Vuex)
 export default {
   namespaced: true,
   state: {
-    acountInfo: ''
+    accountInfo: ''
   },
   mutations: {
     setAccount (state, payload) {
-      state.acountInfo = payload
+      state.accountInfo = payload
     },
     resetAccountInfo (state) { // ログアウト後に情報が残らないように
       state.acountInfo = ''

@@ -7,11 +7,11 @@ export default {
   data () {
     return {
       data: {
-        labels: ['0', '5', '10', '15', '20', '25', '30'],
+        labels: [],
         datasets: [
           {
             label: '人生グラフ',
-            backgroundColor: 'rgba(254,95,82,1)',
+            backgroundColor: 'rgba(255,153,50)',
             data: [],
             fillColor: 'rgba(254,95,82,0.6)', // 線から下端までを塗りつぶす色
             strokeColor: 'rgba(254,95,82,1)', //  折れ線の色
@@ -36,29 +36,25 @@ export default {
           xAxes: [{
             gridLines: {
               //  縦線消す
-              display: true,
-              labelString: '年齢',
-              fontColor: 'rgba(86,84,82,1)'
+              display: true
             },
             ticks: {
               beginAtZero: true,
-              max: 100,
-              min: 0,
+              suggestedmax: 100,
+              min: -100,
               stepsize: 1
             }
           }],
           yAxes: [{
             gridLines: {
               //  zerolineを残すため
-              display: true,
-              labelString: '満足度'
+              display: true
             },
             ticks: {
               beginAtZero: true,
-              max: 100,
+              suggestedmax: 100,
               min: -100,
-              stepsize: 1,
-              fontColor: 'rgba(86,84,82,1)'
+              stepsize: 1
             }
           }]
         }
@@ -71,36 +67,34 @@ export default {
       return this.$store.state.chart.contents
     }
   },
-  async  mounted () {
-    const userId = this.$store.state.auth.userId // 変数userIdを定義。ログイン情報。省略
-    await this.$store.dispatch('chart/addContent', userId)
+  mounted () {
+    // const userId = this.$store.state.auth.userId // 変数userIdを定義。ログイン情報。省略
+    // await this.$store.dispatch('chart/addContent', userId)
     this.setAge()
     this.setScore()
     this.setComment()
     this.renderChart(this.data, this.options)
-    // console.log(this.data)
-    // console.log(this.options)
   },
   methods: { // 処理を埋める
     setAge () { // Age=.js age=vue
-      const age = []
-      this.$store.state.chart.contents.map((Age) => { // contentsのp中のidの中を回せば良い？
-        age.push(Age.age)
+      this.data.labels = this.$store.state.chart.contents.map((content) => {
+        return content.age
       })
-      this.data.datasets[0].data = age
     },
     setScore () {
-      const score = []
-      this.$store.state.chart.contents.map((Score) => { // contentsのp中のidの中を回せば良い？
-        score.push(Score.score)
+      this.data.datasets[0].data = this.$store.state.chart.contents.map((content) => {
+        return content.score
       })
-      this.data.datasets[0].data = score
     },
     setComment () {
-      // 用意したcommentsという箱に、contents.ageという配列を持ったageと、contents.commentという配列を持った
+    // 用意したcommentsという箱に、contents.ageという配列を持ったageと、contents.commentという配列を持った
       // commentをObjectとしてpushする
       const comments = this.checkContents.map((content) => {
         return { age: content.age, comment: content.comment }
+      })
+      const comment = []
+      this.$store.state.chart.contents.map((content) => {
+        comment.push(content.comment)
       })
       // tooltip設定
       // https://misc.0o0o.org/chartjs-doc-ja/configuration/tooltip.html#%E5%A4%96%E9%83%A8%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%83%84%E3%83%BC%E3%83%AB%E3%83%81%E3%83%83%E3%83%97

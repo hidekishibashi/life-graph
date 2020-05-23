@@ -1,13 +1,13 @@
 <template>
   <div class="loginPage">
     <div class="login">
-        <h1>LifeGraph</h1>
-        <div class="loginID">
-          <label for="username" />
-          <input v-model="username" placeholder="UserName">
-          <label for="password" />
-          <input v-model="password" type="password" placeholder="Password">
-          </div>
+      <h1>LifeGraph</h1>
+      <div class="loginID">
+        <label for="username" />
+        <input v-model="username" placeholder="UserName">
+        <label for="password" />
+        <input v-model="password" type="password" placeholder="Password">
+      </div>
       <button class="btn" @click="login()">
         Sign in
       </button>
