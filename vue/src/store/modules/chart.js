@@ -9,12 +9,14 @@ export default {
     contents: [],
     load: false
   },
+
   mutations: {
     setContents (state, payload) {
       state.contents = payload
       state.loaded = !state.loaded
     }
   },
+
   actions: {
     setContents ({ commit }, userId) {
       const url = 'api/auth/reference/' + userId
