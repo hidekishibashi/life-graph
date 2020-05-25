@@ -26,11 +26,17 @@ public class LifeGraphRepository {
     @Autowired
 
     // MySQLのデータを持ってくるライブラリ
-    JdbcTemplate jdbcTemplate;
+   private JdbcTemplate jdbcTemplate;
 
-    // ユーザーIdと年齢のチェック
-    public Boolean existsByUserIdAndAge(long parentId, int age) {
-      final String sql = "select COUNT(*)from child_chart where parent_id = " + parentId + " and age = " + age;
+//    // ユーザーIdと年齢のチェック
+//    public Boolean existsByUserIdAndAge(long parentId, int age) {
+//      final String sql = "select COUNT(*)from child_chart where parent_id = " + parentId + " and age = " + age;
+//      Integer count = jdbcTemplate.queryForObject(sql, Integer.class);
+//      return 1 <= count;
+//    }
+
+    public Boolean existsById(long id) {
+      final String sql = "select COUNT(*)from child_chart where id = " + id;
       Integer count = jdbcTemplate.queryForObject(sql, Integer.class);
       return 1 <= count;
     }
