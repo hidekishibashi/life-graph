@@ -23,81 +23,13 @@
               </v-list-item-content>
             </v-list-item>
             <v-card-actions>
-              <router-link to="/life-graph/lists">
-                <v-btn class="#777575--text" color="#FFFFFF">
-                  検索する
-                </v-btn>
-              </router-link>
+              <v-btn class="teal--text" to="/life-graph/lists">
+                検索する
+              </v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
-        <v-col cols="12" sm="6" md="4">
-          <v-card
-            id="topEdit"
-            class="mx-auto"
-            max-width="344"
-            large color="#FFFFFF"
-          >
-            <v-list-item three-line>
-              <v-list-item-content>
-                <v-list-item-title id="editTitle" class="#777575--text">
-                  編集
-                </v-list-item-title>
-                <v-list-item-subtitle id="editSubtitle" class="#777575--text">
-                  人生グラフの項目の追加・訂正を行えます。
-                </v-list-item-subtitle>
-              </v-list-item-content>
-            </v-list-item>
-            <v-card-actions>
-              <router-link to="/new">
-                <v-btn class="white--text" color="#26A69A">
-                  編集する
-                </v-btn>
-              </router-link>
-            </v-card-actions>
-          </v-card>
-        </v-col>
-      </v-row>
-      <v-row
-        justify="center" align-content="center"
-      >
-        <v-col>
-          <div id="topChart" style="width:600px;height:auto;">
-            <Chart />
-          </div>
-        </v-col>
-      </v-row>
-      <!-- </p> -->
-      <!-- <p v-else> -->
-      <v-row style="height: 450px;" justify="center" align-content="center">
-        <v-col cols="12" sm="6" md="4">
-          <v-card
-            id="topSearchAft"
-            class="mx-auto"
-            max-width="344"
-            outlined large
-            color="#26A69A"
-          >
-            <v-list-item three-line>
-              <v-list-item-content width="404px">
-                <v-list-item-title outlined large color="#FFFFFF" class="white--text">
-                  検索
-                </v-list-item-title>
-                <v-list-item-subtitle class="white--text">
-                  希望の人生グラフを見ることができます。
-                </v-list-item-subtitle>
-              </v-list-item-content>
-            </v-list-item>
-            <v-card-actions>
-              <router-link to="/life-graph/lists">
-                <v-btn class="#777575--text" color="#FFFFFF">
-                  検索する
-                </v-btn>
-              </router-link>
-            </v-card-actions>
-          </v-card>
-        </v-col>
-        <v-col cols="12" sm="6" md="4">
+        <v-col v-show="show" cols="12" sm="6" md="4">
           <v-card
             id="topEntry"
             class="mx-auto"
@@ -115,16 +47,42 @@
               </v-list-item-content>
             </v-list-item>
             <v-card-actions>
-              <router-link to="/new">
-                <v-btn id="entryBtn" class="white--text" color="#26A69A">
-                  登録する
-                </v-btn>
-              </router-link>
+              <v-btn id="entryBtn" class="white--text" color="#26A69A" to="/new">
+                登録する
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-col>
+        <v-col v-show="!show" cols="12" sm="6" md="4">
+          <v-card
+            id="topEdit"
+            class="mx-auto"
+            max-width="344"
+            large color="#FFFFFF"
+          >
+            <v-list-item three-line>
+              <v-list-item-content>
+                <v-list-item-title id="editTitle" class="#777575--text">
+                  編集
+                </v-list-item-title>
+                <v-list-item-subtitle id="editSubtitle" class="#777575--text">
+                  人生グラフの項目の追加・訂正を行えます。
+                </v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+            <v-card-actions>
+              <v-btn class="white--text" color="#26A69A" to="/new">
+                編集する
+              </v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
       </v-row>
-      <!-- </p> -->
+      <v-row justify="center">
+        <div>
+          <Chart />
+        </div>
+      </v-row>
     </v-container>
   </v-app>
 </template>
@@ -145,10 +103,19 @@ export default {
     Chart,
     Header
   },
-
   data: () => ({
-    //
-  })
+    show: true
+  }),
+  computed: {
+    getContents () {
+      return this.$store.state.chart.contents
+    }
+  },
+  mounted () {
+    if (this.getContents) {
+      this.show = !this.show
+    }
+  }
 }
 
 //   created () {
