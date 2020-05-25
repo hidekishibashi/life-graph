@@ -63,5 +63,5 @@ values
 ("須田ちゃん","testtest","mizuki.suda@seattleconsulting.co.jp"),
 ("simoharaguchi","testtest","reiki.shimoharaguchi@seattleconsulting.co.jp"),
 ("直也","testtest","naoya.hayashi@seattleconsulting.co.jp"),
-("ヤマト","testtest","yamato.takezaki@seattleconsulting.co.jp")
+("ヤマト","testtest","yamato.takezaki@seattleconsulting.co.jp");
 
