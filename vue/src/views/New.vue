@@ -167,6 +167,7 @@
 
 <script>
 import Header from '../components/Header.vue'
+import axios from 'axios'
 
 export default {
   name: 'New',
@@ -186,22 +187,9 @@ export default {
       { text: 'コメント', value: 'comment' },
       { text: '編集', value: 'actions', sortable: false }
     ],
-    // chartSets部分にage,score,title,commentの配列を渡す
+    // chartSets部分にage,score,commentの配列を渡す
     // 以下の型でstoreでデータ管理
-    chartSets: [
-      // {
-      //   headersets部分で定義したvalue
-      //   age: 20,
-      //   score: 12,
-      //   comment: 'コメント',
-      //   title: 'タイトル'
-      // }
-    ],
-    // titleHeader: {
-    //   text: 'タイトル',
-    //   value: 'title'
-    // },
-    // title: '',
+    chartSets: [],
     editedIndex: -1,
     editedItem: {
       age: 0,
@@ -212,8 +200,8 @@ export default {
     //   title: ''
     // },
     defaultItem: {
-      age: 0,
-      score: 0,
+      age: null,
+      score: null,
       comment: ''
     },
     // valueがない場合は右のエラー文を表示する。
@@ -224,27 +212,58 @@ export default {
     // モーダル表示タイトルを条件分岐で変更。インデックス数値が-1だった場合追加する、1以上の場合（すでに登録されている)編集すると表示される
     formTitle () {
       return this.editedIndex === -1 ? '追加する' : '編集する'
+    },
+    showContents () {
+      return this.$store.state.chart.contents
     }
   },
   watch: {
     dialog (val) {
       val || this.close()
+    },
+    showContents (newContents) {
+      this.setContents()
     }
+    // setEditedItem () {
+    //   this.editedItem = this.$store.stare.chart.contents
+    // }
     // titleDialog (val) {
     //   val || this.titleClose()
     // }
   },
+  created () {
+    const userId = this.$store.state.auth.userId
+    this.$store.dispatch('setContents', userId)
+  },
+  // mounted () {
+  //   this.showContents()
+  // },
   methods: {
     // モーダルのフォームデフォルトに登録済みのデータを表示
+    setContents () {
+      this.chartSets = this.$store.state.chart.contents
+    },
     editItem (item) {
       this.editedIndex = this.chartSets.indexOf(item)
       this.editedItem = Object.assign({}, item)
+      // this.editItem = this.chartSets
       this.dialog = true
     },
     // index番号と一致するレコードの削除
     deleteItem (item) {
+      // get index
       const index = this.chartSets.indexOf(item)
       confirm('本当に削除しますか？') && this.chartSets.splice(index, 1)
+      // get child_chartId
+      const id = this.$store.state.chart.contents[index].id
+      // get user_id to update child_chart
+      const userId = this.$store.state.auth.userId
+      const url = 'api/auth/' + id
+      axios.delete(url, {
+        id: id
+      }).then(res => {
+        this.$store.dispatch('updateContents', userId)
+      })
     },
     // モーダルを閉じ,
     close () {
@@ -259,15 +278,58 @@ export default {
       // index番号が0以上の場合、index番号に当たるitemを変更させる
       if (this.$refs.form.validate()) {
         if (this.editedIndex > -1) {
+          // 編集
           Object.assign(this.chartSets[this.editedIndex], this.editedItem)
-          // それ以外の新規追加の場合は、editedItemをpushする
+          this.clearData()
+          this.editData()
+          // 新規登録
         } else {
           this.chartSets.push(this.editedItem)
+          this.saveData()
         }
-        this.close()
       }
+      this.close()
     },
-
+    saveData () {
+      // get user_id
+      const userId = this.$store.state.auth.userId
+      const url = '/api/auth/life_graphs'
+      axios.post(url, {
+        userId: userId,
+        age: this.editedItem.age,
+        score: this.editedItem.score,
+        comment: this.editedItem.comment
+      }).then(res => {
+        this.$store.dispatch('updateContents', userId)
+      })
+    },
+    editData () {
+      const userId = this.$store.state.auth.userId
+      const childId = this.$store.state.chart.contents[this.editedIndex].id
+      const url = '/api/auth/life_graphs'
+      axios.post(url, {
+        userId: userId,
+        id: childId,
+        age: this.editedItem.age,
+        score: this.editedItem.score,
+        comment: this.editedItem.comment
+      }).then(res => {
+        this.$store.dispatch('updateContents', userId)
+      })
+    },
+    // clearData () {
+    //   const userId = this.$store.state.auth.userId
+    //   const parentId = this.$store.state.chart.contents[this.editedIndex].parent_id
+    //   const age = this.$store.state.chart.contents[this.editedIndex].age
+    //   const url = '/api/auth/life_graphs'
+    //   axios.delete(url, {
+    //     userId: userId,
+    //     parentId: parentId,
+    //     age: age
+    //   }).then(res => {
+    //     this.$store.dispatch('updateContents', userId)
+    //   })
+    // },
     // editTitle (title) {
     //   this.editedTitle = Object.assign({}, title)
     //   this.titleDialog = true
@@ -278,8 +340,8 @@ export default {
     //   // indexを-1にする処理はいらないと思う
     // },
     createChart () {
-      // メソッド内でconst定義している場合、thisは不要
-      // setContentsをdispatchして、lifeChartを渡す。
+    // メソッド内でconst定義している場合、thisは不要
+    // setContentsをdispatchして、lifeChartを渡す。
       this.$store.dispatch('setContents', this.chartSets)
       this.$router.push('/top')
     }
