@@ -253,27 +253,17 @@ export default {
     deleteItem (item) {
       // get index
       const index = this.chartSets.indexOf(item)
-      // confirm('本当に削除しますか？') && this.chartSets.splice(index, 1)
-      const parentId = this.$store.state.chart.contents[index].parentId
-      const age = this.$store.state.chart.contents[index].age
-      const url = '/api/auth/life_graphs'
-      debugger
-      axios.delete(url, {
-        // userId: userId,
-        parentId: parentId,
-        age: age
-      })
+      confirm('本当に削除しますか？') && this.chartSets.splice(index, 1)
       // get child_chartId
-      // const id = this.$store.state.chart.contents[index].id
-      // // get user_id to update child_chart
-      // const userId = this.$store.state.auth.userId
-      // debugger
-      // const url = 'api/auth/' + id
-      // axios.delete(url, {
-      //   id: id
-      // }).then(res => {
-      //   this.$store.dispatch('updateContents', userId)
-      // })
+      const id = this.$store.state.chart.contents[index].id
+      // get user_id to update child_chart
+      const userId = this.$store.state.auth.userId
+      const url = 'api/auth/' + id
+      axios.delete(url, {
+        id: id
+      }).then(res => {
+        this.$store.dispatch('updateContents', userId)
+      })
     },
     // モーダルを閉じ,
     close () {
