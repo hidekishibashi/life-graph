@@ -62,12 +62,6 @@ values
 ("管理者","password","admin.account@seattleconsulting.co.jp"),
 ("オーナー","password","mod.account@seattleconsulting.co.jp");
 
-insert into `user_roles` (
-`user_id`,`role_id`) 
-values 
-("1","1"),
-("2","3"),
-("3","2");
 
 insert into `users` (
 `username`,`password`,`email`) 
@@ -79,3 +73,17 @@ values
 ("直也","testtest","naoya.hayashi@seattleconsulting.co.jp"),
 ("ヤマト","testtest","yamato.takezaki@seattleconsulting.co.jp"),
 ("済","password","login.successful@seattleconsulting.co.jp");
+
+insert into `user_roles` (
+`user_id`,`role_id`) 
+values 
+("1","1"),
+("2","3"),
+("3","2"),
+("4","1"),
+("5","1"),
+("6","1"),
+("7","1"),
+("8","1"),
+("9","1"),
+("10","1");
