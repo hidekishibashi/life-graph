@@ -22,16 +22,16 @@ public class SearchController {
 	@RequestMapping(value = "/auth/life-graphs", method = RequestMethod.GET)
 // SearchGraphInfoから検索ページに必要な要素を引っ張ってきて、反映。 l.37はl.50に影響している。　　　likeNameを引数にしてあいまい検索を行えるようにしている。　バックだけでは引数"私"のようなものがない為、フロントと繋げる必要あり。
 	public ResponseEntity<List<SearchGraphInfo>>SearchGraphInfos(@RequestParam("likeName") Optional<String>likeName,
-												@RequestParam("startDame") Optional<String>startDate,
-												@RequestParam("updateDate") Optional<String>updateDate){
-		List<SearchGraphInfo> SearchGraphInfos = SelectSearchGraphInfo(likeName,startDate,updateDate);
+												@RequestParam("startDate") Optional<String>startDate,
+												@RequestParam("endDate") Optional<String>endDate){
+		List<SearchGraphInfo> SearchGraphInfos = SelectSearchGraphInfo(likeName,startDate,endDate);
 		return ResponseEntity.ok(SearchGraphInfos);
 	}
 
 // 日時検索のためには、変更、編集が必要かも？
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	private List<SearchGraphInfo> SelectSearchGraphInfo(Optional<String> likeName, Optional<String> startDate, Optional<String> updateDate){
+	private List<SearchGraphInfo> SelectSearchGraphInfo(Optional<String> likeName, Optional<String> startDate, Optional<String> endDate){
 
 
 // sql="";はsqlが空で指定されてしまう
@@ -39,8 +39,8 @@ public class SearchController {
 		if(likeName.isPresent()) {
 			sql += " WHERE username like '%"+likeName.get()+"%'";
 		}
-		else if(startDate.isPresent() && updateDate.isPresent()) {
-			sql += "WHERE `updated_at` BETWEEN "+startDate.get()+" AND "+updateDate.get()+"";
+		else if(startDate.isPresent() && endDate.isPresent()) {
+			sql += "WHERE `updated_at` BETWEEN "+startDate.get()+" AND "+endDate.get()+"";
 		}
 		return jdbcTemplate.query(sql, new RowMapper<SearchGraphInfo>() {
 			public SearchGraphInfo mapRow(ResultSet rs, int rowNum)throws SQLException {

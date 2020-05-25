@@ -1,26 +1,23 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+// import Vue from 'vue'
+// import Vuex from 'vuex'
 import axios from 'axios'
-
-Vue.use(Vuex)
+// Vue.use(Vuex)
 
 export default {
   state: {
     contents: [],
-    load: false
+    loaded: false
   },
-
   mutations: {
-    setContents (state, payload) {
-      state.contents = payload
-      state.loaded = !state.loaded
+    setContents (state, data) {
+      state.contents = data
+      state.loaded = true
     }
   },
-
   actions: {
-    setContents ({ commit }, userId) {
-      const url = 'api/auth/reference/' + userId
-      axios.get(url).then((res) => {
+    async setContents ({ commit }, userId) {
+      const url = '/api/auth/reference?userID=' + userId
+      await axios.get(url).then((res) => {
         commit('setContents', res.data)
       })
     }

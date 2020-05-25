@@ -1,6 +1,5 @@
 <script>
 import { Line } from 'vue-chartjs'
-
 export default {
   name: 'LifeChart',
   // propsとかで登録画面の情報を持ってくるかデータベースからデータ持ってこないとダメよね？？
@@ -75,8 +74,13 @@ export default {
     }
   },
   mounted () {
-    const userId = this.$store.state.auth.userId
+    const userId = this.$store.state.refUser.Id
+    console.log(this.$store.state.refUser.Id)
+    console.log('上下')
+    console.log(userId)
+    console.log('userId')
     this.$store.dispatch('setContents', userId)
+    console.log('setContentsは動かした')
     this.setChart()
   },
   methods: {
