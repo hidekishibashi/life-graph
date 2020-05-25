@@ -153,7 +153,6 @@ export default {
       if (!this.model) return []
       // console.log(Object.this.model)
       return Object.keys(this.model).map(key => {
-        console.log(key)
         return {
           key,
           value: this.model[key] || 'n/a'
@@ -185,12 +184,10 @@ export default {
         })
         .then((response) => {
           this.entries = response
-          console.log(this.entries)
         })
-        .catch(err => {
-          console.log(err)
-          console.log('err')
-        })
+        // .catch(err => {
+        //   console.log(err)
+        // })
         .finally(() => (this.isLoading = false))
       // async mounted () {
       //   await this.$store.dispatch('searchName')
@@ -220,19 +217,15 @@ export default {
     // }
   },
   methods: {
-    getDates: (dates) => {
-      console.log(dates) // Object {startDate: "2017-12-25T00:00:00+09:00", endDate: "2018-01-22T00:00:00+09:00"}
-      // 取得した日付をイベントに渡す
-    },
+    // getDates: (dates) => {
+    //   // console.log(dates) // Object {startDate: "2017-12-25T00:00:00+09:00", endDate: "2018-01-22T00:00:00+09:00"}
+    //   // 取得した日付をイベントに渡す
+    // },
     filter (val, search) {
       return val === search
     },
     reference () {
       const Id = this.model
-      console.log(this.model.id)
-      console.log('Id')
-      console.log(Id)
-      console.log(Id.id)
       // this.$store.dispatch('setUserId', { Id: Id.id })
       this.$store.dispatch('setUserRef', { Id: Id.id })
       this.$router.push('/reference')
