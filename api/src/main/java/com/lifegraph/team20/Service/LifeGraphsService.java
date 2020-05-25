@@ -8,17 +8,17 @@ import org.springframework.stereotype.Service;
 import com.lifegraph.team20.LifeGraphData;
 import com.lifegraph.team20.models.ParentLifeGraph;
 import com.lifegraph.team20.repository.LifeGraphRepository;
-import com.lifegraph.team20.repository.ParentLifeGraphRepository;
+
 
 
 
 @Service
 public class LifeGraphsService {
 
+
   @Autowired
-  private ParentLifeGraphRepository parentRepository;
-  @Autowired
-  private LifeGraphRepository childRepository;
+  private LifeGraphRepository repository;
+
 
   /**
    * 登録・編集のメイン処理
@@ -41,16 +41,16 @@ public class LifeGraphsService {
   private long resisterParent(long userId) {
     // exists parent by userId
     long parentId;
-    Optional<ParentLifeGraph> parent = parentRepository.findByUserId(userId);
+    Optional<ParentLifeGraph> parent = repository.findByUserId(userId);
 //    if (parentRepository.existsByUserId(userId)) {
     if (parent.isPresent()) {
       // update
       parentId = parent.get().getId();
       // 更新日時をアップデートする
-      childRepository.updateNowTime(userId);
+      repository.updateNowTime(userId);
     } else {
       // insert
-      parentId = parentRepository.insert(userId);
+      parentId = repository.insert(userId);
 
     }
     return parentId;
@@ -59,25 +59,33 @@ public class LifeGraphsService {
   private void registerChild(long parentId, LifeGraphData data) {
     // exists parent by userId
     // 子供のIDがあれば、更新する
-    if (childRepository.existsByUserIdAndAge(parentId, data.getAge())) {
-
+    if (repository.existsByUserIdAndAge(parentId, data.getAge())) {
       // update
-      childRepository.updateChild(data.getId(), data.getAge(),data.getScore(), data.getComment());
-
+    	repository.updateChild(data.getId(), data.getAge(),data.getScore(), data.getComment());
       // 更新した時にすでにageが存在する場合、エラーを出す
         // エラーステータス409が出るかも？？
         // でプリケイどエラーを調べる
-
     } else {
-
       // insert
-      childRepository.addChild(parentId, data.getAge(), data.getScore(), data.getComment());
+    	repository.addChild(parentId, data.getAge(), data.getScore(), data.getComment());
       // 更新した時にすでにageが存在する場合、エラーを出す
     }
-
   }
 
-  public void deleteChild(long Id, LifeGraphData data) {
-     childRepository.deleteChild(data.getId());
-   }
+  public void deleteChild(long Id) {
+	  repository.deleteChild(Id);
+	   }
+
+//  public ChildChart refRecode(LifeGraphData data) {
+//	    long parentId = data.getParentId();
+//	    int age = data.getAge();
+//	    //parentIdとageが一致するレコードを持ってくる
+//	    ChildChart record = repository.record(parentId, age);
+//	    return record;
+//	  }
+
+
+  // public void selectData(long userId) {
+	//   repository.selectData(userId);
+  // }
 }

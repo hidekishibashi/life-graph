@@ -41,17 +41,27 @@ CREATE TABLE `parent_chart` (
    PRIMARY KEY (`id`),
    UNIQUE KEY `user_id` (`user_id`),
    CONSTRAINT `Parent_Chart_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
- ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+ ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 CREATE TABLE `child_chart` (
    `id` bigint NOT NULL AUTO_INCREMENT,
    `parent_id` bigint NOT NULL,
-   `score` int NOT NULL,
    `age` int NOT NULL,
+   `score` int NOT NULL,
    `comment` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
    PRIMARY KEY (`id`),
    UNIQUE KEY `parent_id` (`parent_id`,`age`),
    CONSTRAINT `child_chart_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `parent_chart` (`id`)
- ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+ ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+insert into `users` (
+`username`,`password`,`email`) 
+values 
+("めし","testtest","yuta.fukui@seattleconsulting.co.jp"), 
+("mei","testtest","mei.kishida@seattleconsulting.co.jp"), 
+("須田ちゃん","testtest","mizuki.suda@seattleconsulting.co.jp"),
+("simoharaguchi","testtest","reiki.shimoharaguchi@seattleconsulting.co.jp"),
+("直也","testtest","naoya.hayashi@seattleconsulting.co.jp"),
+("ヤマト","testtest","yamato.takezaki@seattleconsulting.co.jp")
 

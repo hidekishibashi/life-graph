@@ -253,11 +253,12 @@ export default {
     deleteItem (item) {
       // get index
       const index = this.chartSets.indexOf(item)
-      confirm('本当に削除しますか？') && this.chartSets.splice(index, 1)
+      // confirm('本当に削除しますか？') && this.chartSets.splice(index, 1)
       // get child_chartId
       const id = this.$store.state.chart.contents[index].id
       // get user_id to update child_chart
       const userId = this.$store.state.auth.userId
+      confirm('本当に削除しますか？') && this.chartSets.splice(index, 1)
       const url = 'api/auth/' + id
       axios.delete(url, {
         id: id
@@ -280,7 +281,6 @@ export default {
         if (this.editedIndex > -1) {
           // 編集
           Object.assign(this.chartSets[this.editedIndex], this.editedItem)
-          this.clearData()
           this.editData()
           // 新規登録
         } else {
@@ -317,28 +317,7 @@ export default {
         this.$store.dispatch('updateContents', userId)
       })
     },
-    // clearData () {
-    //   const userId = this.$store.state.auth.userId
-    //   const parentId = this.$store.state.chart.contents[this.editedIndex].parent_id
-    //   const age = this.$store.state.chart.contents[this.editedIndex].age
-    //   const url = '/api/auth/life_graphs'
-    //   axios.delete(url, {
-    //     userId: userId,
-    //     parentId: parentId,
-    //     age: age
-    //   }).then(res => {
-    //     this.$store.dispatch('updateContents', userId)
-    //   })
-    // },
-    // editTitle (title) {
-    //   this.editedTitle = Object.assign({}, title)
-    //   this.titleDialog = true
-    // },
-    // titleClose () {
-    //   this.titleDialog = false
-    //   this.editedTitle = Object.assign({}, this.defaultTitle)
-    //   // indexを-1にする処理はいらないと思う
-    // },
+
     createChart () {
     // メソッド内でconst定義している場合、thisは不要
     // setContentsをdispatchして、lifeChartを渡す。
