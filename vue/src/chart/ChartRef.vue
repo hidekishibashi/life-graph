@@ -75,12 +75,7 @@ export default {
   },
   mounted () {
     const userId = this.$store.state.refUser.Id
-    console.log(this.$store.state.refUser.Id)
-    console.log('上下')
-    console.log(userId)
-    console.log('userId')
     // this.$store.dispatch('setContents', userId)
-    console.log('setContentsは動かした')
     this.setChart()
   },
   destroyed () {
