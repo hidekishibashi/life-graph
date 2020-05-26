@@ -340,7 +340,7 @@ export default {
 
 <style>
 #new {
-  background-color: #e5e5e5;
+  background-color: #f4f2ec;
 }
 
 #dataTable{
