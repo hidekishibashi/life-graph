@@ -44,14 +44,14 @@
                           <v-text-field
                             v-model="editedItem.age"
                             label="年齢"
-                            :rules="[required]"
+                            :rules="[required,limited_age]"
                           />
                         </v-col>
                         <v-col cols="12" sm="6" md="4">
                           <v-text-field
                             v-model="editedItem.score"
                             label="スコア"
-                            :rules="[required]"
+                            :rules="[required,max_score,min_score] "
                           />
                         </v-col>
                         <v-col cols="12" sm="6" md="4">
@@ -60,12 +60,6 @@
                             label="コメント"
                           />
                         </v-col>
-                        <!-- <v-col cols="12" sm="6" md="4">
-                          <v-text-field
-                            v-model="editedItem.title"
-                            label="タイトル"
-                          />
-                        </v-col> -->
                       </v-row>
                     </v-form>
                   </v-container>
@@ -120,21 +114,6 @@
                 color="#64D8CB"
                 v-on="on"
               >
-                タイトルを編集する
-              </v-btn>
-            </template>
-            <v-card>
-              <v-card-title>
-                <span>タイトルを編集する</span>
-              </v-card-title>
-              <v-card-text>
-                <v-container>
-                  <v-row>
-                    <v-col cols="12">
-                      <v-text-filed
-                        v-model="editedTitle"
-                        label="タイトル"
-                      />
                     </v-col>
                   </v-row>
                 </v-container>
@@ -181,8 +160,8 @@ export default {
   components: {
     Header
   },
-  dialog: false,
   data: () => ({
+    dialog: false,
     // データテーブルのカラムとvalue名
     headers: [
       {
@@ -190,7 +169,10 @@ export default {
         align: 'start',
         value: 'age'
       },
-      { text: 'スコア', value: 'score' },
+      {
+        text: 'スコア',
+        value: 'score'
+      },
       { text: 'コメント', value: 'comment' },
       { text: '編集', value: 'actions', sortable: false }
     ],
@@ -211,6 +193,9 @@ export default {
       score: 0,
       comment: ''
     },
+    limited_age: value => value <= 100 || 'データが一致しません',
+    min_score: value => value >= -100 || 'データが一致しません',
+    max_score: value => value <= 100 || 'データが一致しません',
     // valueがない場合は右のエラー文を表示する。
     required: value => !!value || '必ず入力してください'
     // defaultTitle: 'コメントが入ります'
@@ -225,9 +210,9 @@ export default {
     }
   },
   watch: {
-    dialog (val) {
-      val || this.close()
-    },
+    // dialog (val) {
+    //   val || this.close()
+    // },
     showContents (newContents) {
       this.setContents()
     }
@@ -257,7 +242,7 @@ export default {
       this.editedIndex = this.chartSets.indexOf(item)
       this.editedItem = Object.assign({}, item)
       // this.editItem = this.chartSets
-      this.dialog = !this.dialog
+      this.dialog = true
     },
     // index番号と一致するレコードの削除
     deleteItem (item) {
@@ -278,7 +263,7 @@ export default {
     },
     // モーダルを閉じ,
     close () {
-      this.dialog = !this.dialog
+      this.dialog = false
       // editedItemの更新
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem)
