@@ -74,7 +74,7 @@ export default {
     }
   },
   mounted () {
-    const userId = this.$store.state.refUser.Id
+    // const userId = this.$store.state.refUser.Id
     // this.$store.dispatch('setContents', userId)
     this.setChart()
   },
