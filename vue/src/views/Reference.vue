@@ -13,7 +13,7 @@
       <v-row justify="center" class="mb-10">
         <v-col class="mr-10" cols="12" sm="12" md="8" lg="6">
           <v-card class="pa-10">
-            <Chart />
+            <ChartRef />
           </v-card>
         </v-col>
       </v-row>
