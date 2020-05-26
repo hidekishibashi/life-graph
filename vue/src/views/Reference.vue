@@ -1,5 +1,7 @@
 <template>
   <v-app id="reference">
+    <div id=ref>
+    </div>
     <Header />
     <v-container>
       <v-row>
@@ -11,7 +13,7 @@
       </v-row>
       <v-row>
         <v-col>
-          <div id="refChart" style="width:750px;height:auto" justify="center">
+          <div id="refChart" style="height: auto; width: 750px;" justify="center">
             <Chart />
           </div>
         </v-col>
@@ -81,5 +83,8 @@ export default {
 </script>
 
 <style>
+#ref{
+  padding:30px
+}
 
 </style>

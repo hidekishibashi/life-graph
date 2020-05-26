@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="header">
     <v-app-bar
       color="#495183"
       dark
@@ -94,9 +94,15 @@ export default {
 }
 </script>
 <style scoped>
+#header{
+  position: fixed;
+  width: 100%;
+  z-index: 2;
+}
+
 ul {
-  list-style: none;
-  display: flex;
   align-items: center;
+  display: flex;
+  list-style: none;
 }
 </style>

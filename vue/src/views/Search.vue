@@ -1,5 +1,8 @@
 <template>
   <v-app id="search">
+    <div id=ser>
+    </div>
+    <Header />
     <br>
     <v-card
       width="auto"
@@ -136,6 +139,7 @@
 </template>
 
 <script>
+import Header from '../components/Header.vue'
 import moment from 'moment'
 import VueDaterangePicker from 'vue-daterange-picker'
 moment.locale('ja')
@@ -143,6 +147,7 @@ export default {
   name: 'Table',
   dialog: false,
   components: {
+    Header,
     VueDaterangePicker
   },
   data: () => ({
@@ -259,6 +264,9 @@ img {
 
 .calender {
   color:#F4F2EC
+}
+#ser{
+  padding:20px
 }
 
 </style>
