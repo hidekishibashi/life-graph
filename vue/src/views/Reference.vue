@@ -22,14 +22,14 @@
 </template>
 
 <script>
-import Chart from '../chart/Chart'
+import ChartRef from '../chart/ChartRef'
 import Header from '../components/Header.vue'
 
 export default {
   name: 'Reference',
   //     extends: Radar,
   components: {
-    Chart,
+    ChartRef,
     Header
   },
   //   data () {
@@ -88,5 +88,4 @@ export default {
 #ref{
   padding:30px
 }
-
 </style>
