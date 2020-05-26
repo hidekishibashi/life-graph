@@ -12,8 +12,8 @@
       </v-row>
       <v-row>
         <v-col>
-          <div id="refChart" style="height: auto; width: 750px;" justify="center">
-            <Chart />
+          <div id="refChart" style="width:750px;height:auto" justify="center">
+            <ChartRef />
           </div>
         </v-col>
       </v-row>
@@ -22,14 +22,14 @@
 </template>
 
 <script>
-import Chart from '../chart/Chart'
+import ChartRef from '../chart/ChartRef'
 import Header from '../components/Header.vue'
 
 export default {
   name: 'Reference',
   //     extends: Radar,
   components: {
-    Chart,
+    ChartRef,
     Header
   },
   //   data () {
@@ -82,8 +82,5 @@ export default {
 </script>
 
 <style>
-#ref{
-  padding:30px
-}
 
 </style>
