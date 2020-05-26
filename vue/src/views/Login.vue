@@ -1,36 +1,41 @@
 <template>
-  <div id="login">
+  <v-app id="login">
     <div class="logo">
-      <img src="../assets/lifeChartLogo.svg">
+      <img src="../assets/chartLogo.svg">
     </div>
     <!-- pxのpはpadding, mxのmはmargin, xyは横縦, 数字は大きさに対応 -->
     <v-card width="500px" class="spacing-playground px-10 py-10 mx-auto my-10">
       <v-card-title>
-        <h1 class="mx-auto">
+        <div class="mx-auto title">
           ログイン
-        </h1>
+        </div>
       </v-card-title>
       <v-card-text>
         <v-form
           ref="form"
         >
-          <v-text-field v-model="email" type="email" prepend-icon="mdi-gmail" label="メールアドレス" :rules="[required, emailRules]" color="teal" />
+          <v-text-field v-model="email" type="email" prepend-icon="mdi-gmail" label="メールアドレス" :rules="[required, emailRules]" color="#3949AB" />
           <!-- mdi-eye-offの部分は時間がなければなくします -->
-          <v-text-field v-model="password" :type="show ? 'text' : 'password'" :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'" prepend-icon="mdi-lock" label="パスワード" :rules="[required]" color="teal" @click:append="show = !show" />
+          <v-text-field v-model="password" :type="show ? 'text' : 'password'" :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'" prepend-icon="mdi-lock" label="パスワード" :rules="[required]" color="#3949AB" @click:append="show = !show" />
           <v-card-actions>
-            <v-btn outlined large color="#26A69A" to="/signup">
-              新規登録はこちら
-            </v-btn>
-            <v-spacer />
-            <v-btn large color="#26A69A" class="log-btn" @click="login()">
-              ログインする
-            </v-btn>
+            <v-col cols="12">
+              <v-btn large color="#FF625C" class="my-2 white--text" block @click="login()">
+                ログインする
+              </v-btn>
+              <v-btn class="mt-5" text large color="#3949AB" block to="/signup">
+                新規登録する
+              </v-btn>
+            </v-col>
           </v-card-actions>
         </v-form>
-        <p>*登録済みの方はユーザーネームとパスワードを入力するとログインができます</p>
+        <v-layout justify-center>
+          <p>
+            アカウントをお持ちでない方はこちら
+          </p>
+        </v-layout>
       </v-card-text>
     </v-card>
-  </div>
+  </v-app>
 </template>
 <script>
 // sriptはブラッシュアップに回します
@@ -90,14 +95,17 @@ export default {
 </script>
 
 <style>
+#login {
+  background-color: '#F4F2EC';
+}
 .logo {
-  margin: 60px;
   text-align: center;
+  margin: 100px 10px 10px 10px;
 }
 
 /* ログインボタンの文字色 */
+/* .theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined){
+  color:white;
+} */
 
-.theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) {
-  color: white;
-}
 </style>

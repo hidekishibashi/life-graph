@@ -6,11 +6,15 @@ import axios from 'axios'
 export default {
   state: {
     contents: [],
-    loaded: false
+    loaded: true
   },
   mutations: {
     setContents (state, data) {
       state.contents = data
+      state.loaded = !state.loaded
+    },
+    resetContents (state) {
+      state.contents = []
       state.loaded = true
     }
   },
@@ -18,6 +22,12 @@ export default {
     async setContents ({ commit }, userId) {
       const url = '/api/auth/reference?userID=' + userId
       await axios.get(url).then((res) => {
+        commit('setContents', res.data)
+      })
+    },
+    updateContents ({ commit }, userId) {
+      const url = 'api/auth/reference/' + userId
+      axios.get(url).then((res) => {
         commit('setContents', res.data)
       })
     }

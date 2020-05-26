@@ -13,11 +13,13 @@ public class LifeGraphData {
 
   private long id;
 
+  private long parentId;
+
   @NotNull
   private long userId;
 
   @NotNull
-  @Max(99)
+  @Max(100)
   @Min(1)
   private int age;
 
