@@ -20,7 +20,7 @@
               <!-- v-slot:activator={on}でユーザーがモーダル画面を表示 -->
               <template v-slot:activator="{ on }">
                 <v-btn
-                id="add"
+                  id="add"
                   class="white--text"
                   large
                   color="#FF6F60"
