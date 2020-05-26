@@ -2,31 +2,41 @@
   <v-app id="search">
     <br>
     <v-card
-      width="1200"
-      class="mx-auto"
+      width="auto"
+      color="#F4F2EC"
+      flat
     >
-      <v-row>
-        <v-col cols="12" sm="6" md="3">
+     <v-row justify="center">
+        <v-col cols="6"
+               md="4" max-width="auto"
+        >
           <v-card-text>
             <v-autocomplete
               v-model="model"
               :items="items"
               :loading="isLoading"
               :search-input.sync="search_2"
-              color="white"
+              color="#495183"
+              background-color="#F4F2EC"
+              outlined
               hide-no-data
               hide-selected
               item-text="name"
               item-value="API"
               label="検索"
               placeholder="ここから入力できます"
-              prepend-icon="mdi-database-search"
+              prepend-icon="mdi-account-search"
               return-object
+              class="ma-2"
+              cache-items
+              flat
+              hide-details
+              solo-inverted
             />
           </v-card-text>
         </v-col>
-        <v-spacer />
-        <v-col cols="4" sm="4">
+        <v-col />
+        <v-col cols="3" >
           <v-card-text>
             <vue-daterange-picker
               dates-format="YYYY/MM/DD"
@@ -35,40 +45,42 @@
               :items_2="searchByData"
               :start-date="TwoWeeksAgo"
               :end-date="Date()"
-              label="更新日時から検索"
-              start-place-holder=""
+              start-place-holder="日時検索"
               end-place-holder=""
               @get-dates="getDates"
+              large
             />
           </v-card-text>
         </v-col>
       </v-row>
 
-      <v-toolbar max-width="1200" max-height="50"
-                 class="mx-auto" color="#26A69A"
+     <v-toolbar max-width="auto" max-height="50"
+                 class="mx-2" color="#495183"
                  dark
-                 outlined
+                 flat
       >
-        <v-toolbar-title>検索結果</v-toolbar-title>
+        <v-toolbar-title class="title font-weight-bold">
+          検索結果
+        </v-toolbar-title>
         <v-spacer />
       </v-toolbar>
-      <v-toolbar max-width="1200" max-height="50"
-                 class="mx-auto" color="#26A69A"
-                 dark
+      <v-toolbar max-width="auto" max-height="50"
+                 class="mx-2" color="#495183"
+                 dark flat
       >
         <v-row>
-          <v-col>
-            <v-card-text>
+                    <v-col>
+            <v-card-text class="subtitle-2 font-weight-bold">
               ユーザー名
             </v-card-text>
           </v-col>
           <v-col>
-            <v-card-text>
+            <v-card-text class="subtitle-2 font-weight-bold">
               作成日時
             </v-card-text>
           </v-col>
           <v-col>
-            <v-card-text>
+            <v-card-text class="subtitle-2 font-weight-bold">
               更新日時
             </v-card-text>
           </v-col>
@@ -80,7 +92,8 @@
           <v-toolbar>
             <v-row v-for="(field, i) in fields"
                    :key="i"
-                   color="#26A69A"
+                   color="#495183"
+                   class="ma-2"
                    dark
             >
               <v-col v-if="field.key === 'name'">
@@ -99,8 +112,8 @@
           </v-toolbar>
           <v-card-actions>
             <!-- <v-btn to="/reference"> -->
-            <v-btn @click="reference()">
-              表示
+            <v-btn color="FF6F60" class="white--text" @click="reference()">
+              グラフを表示する
             </v-btn>
           </v-card-actions>
         </v-content>
@@ -234,3 +247,18 @@ export default {
   }
 }
 </script>
+
+<style>
+#search {
+  background-color:#F4F2EC
+}
+
+img {
+  display:none
+}
+
+.calender {
+  color:#F4F2EC
+}
+
+</style>

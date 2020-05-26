@@ -19,9 +19,14 @@
           <!-- mdi-eye-offの部分はブラッシュアップにまわす -->
           <v-text-field v-model="password" :type="show ? 'text' : 'password'" :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'" prepend-icon="mdi-lock" label="パスワード" :rules="[required, max_length]" color="#3949AB" @click:append="show = !show" />
           <v-card-actions>
+            <v-col cols="12">
             <v-btn large color="#FF625C" class="my-2 white--text" block @click="signup()">
               新規登録をする
             </v-btn>
+             <v-btn class="mt-5" text large color="#3949AB" block to="/">
+                ログイン画面に戻る
+              </v-btn>
+            </v-col>
           </v-card-actions>
         </v-form>
       </v-card-text>
