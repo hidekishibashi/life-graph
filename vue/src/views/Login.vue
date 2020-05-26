@@ -16,7 +16,7 @@
         >
           <v-text-field v-model="email" type="email" prepend-icon="mdi-gmail" label="メールアドレス" :rules="[required, emailRules]" color="#3949AB" />
           <!-- mdi-eye-offの部分は時間がなければなくします -->
-          <v-text-field v-model="password" :type="show ? 'text' : 'password'" :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'" prepend-icon="mdi-lock" label="パスワード" :rules="[required]" color="#3949AB" @click:append="show = !show" />
+          <v-text-field v-model="password" :type="show ? 'text' : 'password'" :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'" prepend-icon="mdi-lock" label="パスワード" :rules="[required,max_length]" color="#3949AB" @click:append="show = !show" />
           <v-card-actions>
             <v-col cols="12">
               <v-btn large color="#FF625C" class="my-2 white--text" block @click="login()">
@@ -49,6 +49,7 @@ export default {
       return pattern.test(value) || 'メールアドレスの形式が正しくありません'
     },
     password: '',
+    max_length: value => value.length >= 8 || '8文字以上で入力してください',
     required: value => !!value || '必ず入力してください',
     show: false
   }),
@@ -96,12 +97,13 @@ export default {
 
 <style>
 #login {
-  background-color: '#F4F2EC';
+  background-color: #f4f2ec;
 }
 .logo {
   text-align: center;
   margin: 100px 10px 10px 10px;
 }
+
 /* ログインボタンの文字色 */
 /* .theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined){
   color:white;

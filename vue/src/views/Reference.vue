@@ -1,5 +1,6 @@
 <template>
   <v-app id="reference">
+    <div id="ref" />
     <Header />
     <v-container>
       <v-row>
@@ -81,5 +82,11 @@ export default {
 </script>
 
 <style>
+#reference {
+  background-color: #f4f2ec;
+}
+#ref{
+  padding:30px
+}
 
 </style>
