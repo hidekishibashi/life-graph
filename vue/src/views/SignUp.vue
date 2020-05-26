@@ -22,6 +22,9 @@
             <v-btn large color="#FF625C" class="my-2 white--text" block @click="signup()">
               新規登録をする
             </v-btn>
+            <v-btn id="returnBtn" to="/" outlined large color="#26A69A">
+              <v-icon />戻る
+            </v-btn>
           </v-card-actions>
         </v-form>
       </v-card-text>
