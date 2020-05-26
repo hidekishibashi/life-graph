@@ -44,14 +44,14 @@
                           <v-text-field
                             v-model="editedItem.age"
                             label="年齢"
-                            :rules="[required,limited_age]"
+                            :rules="[required,max,min_age]"
                           />
                         </v-col>
                         <v-col cols="12" sm="6" md="4">
                           <v-text-field
                             v-model="editedItem.score"
                             label="スコア"
-                            :rules="[required,max_score,min_score] "
+                            :rules="[required,max,min] "
                           />
                         </v-col>
                         <v-col cols="12" sm="6" md="4">
@@ -193,9 +193,9 @@ export default {
       score: 0,
       comment: ''
     },
-    limited_age: value => value <= 100 || 'データが一致しません',
-    min_score: value => value >= -100 || 'データが一致しません',
-    max_score: value => value <= 100 || 'データが一致しません',
+    max: value => value <= 100 || 'データが一致しません',
+    min_age: value => value > -1 || 'データが一致しません',
+    min: value => value >= -100 || 'データが一致しません',
     // valueがない場合は右のエラー文を表示する。
     required: value => !!value || '必ず入力してください'
     // defaultTitle: 'コメントが入ります'
