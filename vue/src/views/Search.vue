@@ -91,37 +91,38 @@
       <v-divider />
       <v-expand-transition>
         <!-- <v-content v-if="model"> -->
-          <v-card flat class="mx-6 mt-6" height="60">
-            <v-row v-for="(field, i) in fields"
-                   :key="i"
-                   color="#495183"
-            >
-              <v-col v-if="field.key === 'name'">
-                <!-- <v-card-subtitle v-text="field.key" /> -->
-                <v-card-text v-text="field.value" />
-              </v-col>
-              <v-col v-else-if="field.key === 'created'">
-                <!-- <v-card-subtitle v-text="field.key" /> -->
-                <v-card-text v-text="field.value" />
-              </v-col>
-              <v-col v-else-if="field.key === 'updated'">
-                <!-- <v-card-subtitle v-text="field.key" /> -->
-                <v-card-text v-text="field.value" />
-              </v-col>
-            </v-row>
-            <v-row right>
-              <v-col v-for="n in 3"
-        :key="n"
-        cols="sm" />
-        <v-col />
+        <v-card flat class="mx-6 mt-6" height="60">
+          <v-row v-for="(field, i) in fields"
+                 :key="i"
+                 color="#495183"
+          >
+            <v-col v-if="field.key === 'name'">
+              <!-- <v-card-subtitle v-text="field.key" /> -->
+              <v-card-text v-text="field.value" />
+            </v-col>
+            <v-col v-else-if="field.key === 'created'">
+              <!-- <v-card-subtitle v-text="field.key" /> -->
+              <v-card-text v-text="field.value" />
+            </v-col>
+            <v-col v-else-if="field.key === 'updated'">
+              <!-- <v-card-subtitle v-text="field.key" /> -->
+              <v-card-text v-text="field.value" />
+            </v-col>
+          </v-row>
+          <v-row right>
+            <v-col v-for="n in 3"
+                   :key="n"
+                   cols="sm"
+            />
+            <v-col />
             <!-- <v-btn to="/reference"> -->
             <v-col>
-             <v-btn color="#FF625C" class="my-2 white--text" @click="reference()">
-               グラフを表示する
-            </v-btn>
+              <v-btn color="#FF625C" class="my-2 white--text" @click="reference()">
+                グラフを表示する
+              </v-btn>
             </v-col>
-            </v-row>
-          </v-card>
+          </v-row>
+        </v-card>
         <!-- </v-content> -->
         <!-- <v-toolbar>
           <li v-for="(index,j) in users" :key="j">
@@ -155,8 +156,8 @@
         <v-btn
           :disabled="!model"
           color="grey darken-3"
-          @click="model = null"
           outlined
+          @click="model = null"
         >
           Clear
           <v-icon right>
