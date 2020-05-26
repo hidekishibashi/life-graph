@@ -85,8 +85,8 @@ export default {
 </script>
 <style scoped>
 ul {
-  list-style: none;
-  display: flex;
   align-items: center;
+  display: flex;
+  list-style: none;
 }
 </style>

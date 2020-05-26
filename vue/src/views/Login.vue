@@ -90,12 +90,14 @@ export default {
 </script>
 
 <style>
-.logo{
-  text-align: center;
+.logo {
   margin: 60px;
+  text-align: center;
 }
+
 /* ログインボタンの文字色 */
-.theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined){
-  color:white;
+
+.theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) {
+  color: white;
 }
 </style>

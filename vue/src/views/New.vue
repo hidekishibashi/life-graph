@@ -22,7 +22,7 @@
                 <v-btn
                   class="white--text"
                   large
-                  color="#64D8CB"
+                  color="#FF6F60"
                   v-on="on"
                 >
                   追加する
@@ -71,13 +71,13 @@
                 <v-card-actions>
                   <v-spacer />
                   <v-btn
-                    color="teal"
+                    color="#3949AB"
                     text @click="close"
                   >
                     キャンセル
                   </v-btn>
                   <v-btn
-                    color="teal"
+                    color="#3949AB"
                     text @click="save"
                   >
                     登録する
@@ -157,7 +157,8 @@
         </v-toolbar>
       </v-data-table> -->
       <v-btn
-        @click="createChart"
+        large
+        color="gray" @click="createChart"
       >
         確定
       </v-btn>
@@ -286,3 +287,14 @@ export default {
   }
 }
 </script>
+
+<style>
+#new {
+  background-color: #e5e5e5;
+}
+
+.theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) {
+  color: white;
+  color: #3949ab;
+}
+</style>

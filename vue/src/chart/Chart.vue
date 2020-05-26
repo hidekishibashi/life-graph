@@ -59,18 +59,36 @@ export default {
       }
     }
   },
+  computed: {
+    getContents () {
+      return this.$store.state.chart.contents
+    },
+    // loadedがtrueの時,DOM化するようにする
+    loaded () {
+      return this.$store.state.chart.loaded
+    }
+  },
+  // loadedがtureになる時、描画をさせる
+  watch: {
+    loaded: function () {
+      this.setChart()
+    }
+  },
   mounted () {
-    this.setLabels()
-    this.setData()
-    this.setComments()
-    this.renderChart(this.data, this.options)
+    const userId = this.$store.state.auth.userId
+    this.$store.dispatch('setContents', userId)
+    this.setChart()
   },
   methods: {
+    setChart () {
+      this.setLabels()
+      this.setData()
+      this.setComments()
+      this.renderChart(this.data, this.options)
+    },
     setLabels () {
-      //  agesに配列を渡す
       const ages = []
-      // stageからcontents配列を呼び込みagesにcontentsのインデックス順にageを渡す
-      this.$store.state.chart.contents.map((content) => {
+      this.getContents.map((content) => {
         ages.push(content.age)
       })
       // labelsの中に代入する
@@ -78,17 +96,25 @@ export default {
     },
     setData () {
       const scores = []
-      this.$store.state.chart.contents.map((content) => {
+      this.getContents.map((content) => {
         scores.push(content.score)
       })
       this.data.datasets[0].data = scores
     },
     setComments () {
-      const comments = []
-      this.$store.state.chart.contents.map((content) => {
-        // commentsにageとcommentのオブジェクトを入れる
-        comments.push({ age: content.age, comment: content.comment })
+      const comment = []
+      this.getContents.map((content) => {
+        comment.push(content.comment)
       })
+      const comments = this.getContents.map((content) => {
+        // commentsにageとcommentのオブジェクトを入れる
+        return { age: content.age, comment: content.comment }
+      })
+      // debugger
+      // console.log(comment)
+      // index指定して取る方
+      // console.log(comments[0].comment)
+      // console.log(comments.find(contents => contents.age === 30).comment)
       this.options.tooltips.custom = function (tooltipModel) {
         // ツールチップ要素の指定
         var tooltipEl = document.getElementById('chartjs-tooltip')
@@ -115,8 +141,9 @@ export default {
           var innerHtml = '<thead>'
           // x軸の値を返してくれる
           titleLines.forEach(function (age) {
-            // 配列であるcommnetsのなかのageが、function内でループしているageと=になる時のcommentを見てくる
-            var comment = comments.find(comment => comment.age === age).comment
+            // var index = comments.findIndex(({ age }) => age === ages)
+            // var comment = comments[index].comment
+            var comment = comments.find(contents => contents.age === parseInt(age)).comment
             innerHtml += '<tr><th>' + age + '歳' + '</th></tr>'
             // innerHtml += '</thead><tbody>'
             bodyLines.forEach(function (body, i) {

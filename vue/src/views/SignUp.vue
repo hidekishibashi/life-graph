@@ -63,13 +63,15 @@ export default {
 }
 </script>
 <style>
-.logo{
-  text-align: center;
+.logo {
   margin: 60px;
+  text-align: center;
 }
+
 /* 新規登録ボタンの文字色と配置 */
-.theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined){
-  color:white;
-  margin-left:auto;
+
+.theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) {
+  color: white;
+  margin-left: auto;
 }
 </style>
