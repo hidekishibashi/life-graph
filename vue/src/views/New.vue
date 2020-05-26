@@ -1,7 +1,7 @@
 <template>
   <v-app id="new">
     <Header />
-    <v-container>
+    <v-container id="dataTable">
       <!-- ヘッダーカラム、
       各カラムのデータ呼び出し
       奥ゆきの指定 -->
@@ -20,10 +20,12 @@
               <!-- v-slot:activator={on}でユーザーがモーダル画面を表示 -->
               <template v-slot:activator="{ on }">
                 <v-btn
+                  id="add"
                   class="white--text"
                   large
-                  color="#64D8CB"
+                  color="#FF6F60"
                   v-on="on"
+                  @click="click"
                 >
                   追加する
                 </v-btn>
@@ -42,14 +44,14 @@
                           <v-text-field
                             v-model="editedItem.age"
                             label="年齢"
-                            :rules="[required]"
+                            :rules="[required,max,min_age]"
                           />
                         </v-col>
                         <v-col cols="12" sm="6" md="4">
                           <v-text-field
                             v-model="editedItem.score"
                             label="スコア"
-                            :rules="[required]"
+                            :rules="[required,max,min] "
                           />
                         </v-col>
                         <v-col cols="12" sm="6" md="4">
@@ -58,12 +60,6 @@
                             label="コメント"
                           />
                         </v-col>
-                        <!-- <v-col cols="12" sm="6" md="4">
-                          <v-text-field
-                            v-model="editedItem.title"
-                            label="タイトル"
-                          />
-                        </v-col> -->
                       </v-row>
                     </v-form>
                   </v-container>
@@ -71,13 +67,13 @@
                 <v-card-actions>
                   <v-spacer />
                   <v-btn
-                    color="teal"
+                    color="#3949AB"
                     text @click="close"
                   >
                     キャンセル
                   </v-btn>
                   <v-btn
-                    color="teal"
+                    color="#3949AB"
                     text @click="save"
                   >
                     登録する
@@ -118,21 +114,6 @@
                 color="#64D8CB"
                 v-on="on"
               >
-                タイトルを編集する
-              </v-btn>
-            </template>
-            <v-card>
-              <v-card-title>
-                <span>タイトルを編集する</span>
-              </v-card-title>
-              <v-card-text>
-                <v-container>
-                  <v-row>
-                    <v-col cols="12">
-                      <v-text-filed
-                        v-model="editedTitle"
-                        label="タイトル"
-                      />
                     </v-col>
                   </v-row>
                 </v-container>
@@ -156,11 +137,16 @@
           </v-dialog>
         </v-toolbar>
       </v-data-table> -->
-      <v-btn
-        @click="createChart"
+      <!-- <v-row justify-content-right>
+        <v-col> -->
+      <v-btn id="enterBtn" class="my-5"
+             large
+             color="gray" @click="createChart"
       >
         確定
       </v-btn>
+      <!-- </v-col>
+      </v-row> -->
     </v-container>
   </v-app>
 </template>
@@ -174,8 +160,8 @@ export default {
   components: {
     Header
   },
-  dialog: false,
   data: () => ({
+    dialog: false,
     // データテーブルのカラムとvalue名
     headers: [
       {
@@ -183,7 +169,10 @@ export default {
         align: 'start',
         value: 'age'
       },
-      { text: 'スコア', value: 'score' },
+      {
+        text: 'スコア',
+        value: 'score'
+      },
       { text: 'コメント', value: 'comment' },
       { text: '編集', value: 'actions', sortable: false }
     ],
@@ -200,10 +189,13 @@ export default {
     //   title: ''
     // },
     defaultItem: {
-      age: null,
-      score: null,
+      age: 0,
+      score: 0,
       comment: ''
     },
+    max: value => value <= 100 || 'データが一致しません',
+    min_age: value => value > -1 || 'データが一致しません',
+    min: value => value >= -100 || 'データが一致しません',
     // valueがない場合は右のエラー文を表示する。
     required: value => !!value || '必ず入力してください'
     // defaultTitle: 'コメントが入ります'
@@ -218,9 +210,9 @@ export default {
     }
   },
   watch: {
-    dialog (val) {
-      val || this.close()
-    },
+    // dialog (val) {
+    //   val || this.close()
+    // },
     showContents (newContents) {
       this.setContents()
     }
@@ -240,6 +232,9 @@ export default {
   // },
   methods: {
     // モーダルのフォームデフォルトに登録済みのデータを表示
+    click () {
+      this.dialog = true
+    },
     setContents () {
       this.chartSets = this.$store.state.chart.contents
     },
@@ -284,11 +279,11 @@ export default {
           this.editData()
           // 新規登録
         } else {
-          this.chartSets.push(this.editedItem)
+          // this.chartSets.push(this.editedItem)
           this.saveData()
         }
+        this.close()
       }
-      this.close()
     },
     saveData () {
       // get user_id
@@ -317,13 +312,37 @@ export default {
         this.$store.dispatch('updateContents', userId)
       })
     },
-
     createChart () {
     // メソッド内でconst定義している場合、thisは不要
     // setContentsをdispatchして、lifeChartを渡す。
-      this.$store.dispatch('setContents', this.chartSets)
+      const userId = this.$store.state.auth.userId
+      this.$store.dispatch('setContents', userId)
       this.$router.push('/top')
     }
   }
 }
 </script>
+
+<style>
+#new {
+  background-color: #f4f2ec;
+}
+
+#dataTable{
+  margin-top: 100px;
+}
+
+#add{
+  font-weight:bold;
+}
+
+#enterBtn{
+  font-weight:bold;
+  /* margin:0 0 0 auto; */
+}
+
+.theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) {
+  color: white;
+  color: #3949ab;
+}
+</style>

@@ -1,10 +1,11 @@
 <template>
   <v-app id="reference">
+    <div id="ref" />
     <Header />
     <v-container>
       <v-row>
         <v-col>
-          <v-btn id="returnBtn" to="/search" outlined large color="#26A69A">
+          <v-btn id="returnBtn" to="/life-graph/lists" outlined large color="#26A69A">
             <v-icon />戻る
           </v-btn>
         </v-col>
@@ -12,7 +13,7 @@
       <v-row>
         <v-col>
           <div id="refChart" style="width:750px;height:auto" justify="center">
-            <Chart />
+            <ChartRef />
           </div>
         </v-col>
       </v-row>
@@ -21,14 +22,14 @@
 </template>
 
 <script>
-import Chart from '../chart/Chart'
+import ChartRef from '../chart/ChartRef'
 import Header from '../components/Header.vue'
 
 export default {
   name: 'Reference',
   //     extends: Radar,
   components: {
-    Chart,
+    ChartRef,
     Header
   },
   //   data () {

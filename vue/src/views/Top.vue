@@ -9,21 +9,21 @@
             id="topSearchAft"
             class="mx-auto"
             max-width="344"
-            outlined large
-            color="#26A69A"
+            color="#E2E1E3"
           >
             <v-list-item three-line>
               <v-list-item-content width="404px">
-                <v-list-item-title outlined large color="#FFFFFF" class="white--text">
-                  検索
+                <v-list-item-title id="searchTitle">
+                  検 索
                 </v-list-item-title>
-                <v-list-item-subtitle class="white--text">
-                  希望の人生グラフを見ることができます。
+                <v-list-item-subtitle id="searchSubtitle">
+                  希望の人生グラフを見ることが<br>
+                  できます。
                 </v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
             <v-card-actions>
-              <v-btn class="teal--text" to="/life-graph/lists">
+              <v-btn id="searchBtn" block to="/life-graph/lists">
                 検索する
               </v-btn>
             </v-card-actions>
@@ -38,22 +38,23 @@
           >
             <v-list-item three-line>
               <v-list-item-content>
-                <v-list-item-title id="entryTitle" class="#777575--text">
-                  登録
+                <v-list-item-title id="entryTitle">
+                  登 録  または  編 集
                 </v-list-item-title>
-                <v-list-item-subtitle id="entrySubtitle" class="#777575--text">
-                  人生グラフを作成できます。
+                <v-list-item-subtitle id="entrySubtitle">
+                  あなたの人生グラフを<br>
+                  作成できます。
                 </v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
             <v-card-actions>
-              <v-btn id="entryBtn" class="white--text" color="#26A69A" to="/new">
-                登録する
+              <v-btn id="entryBtn" block class="white--text" color="#FF6F60" to="/new">
+                作成する
               </v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
-        <v-col v-show="!show" cols="12" sm="6" md="4">
+        <!-- <v-col v-show="!show" cols="12" sm="6" md="4">
           <v-card
             id="topEdit"
             class="mx-auto"
@@ -62,21 +63,22 @@
           >
             <v-list-item three-line>
               <v-list-item-content>
-                <v-list-item-title id="editTitle" class="#777575--text">
-                  編集
+                <v-list-item-title id="editTitle">
+                  編 集
                 </v-list-item-title>
-                <v-list-item-subtitle id="editSubtitle" class="#777575--text">
-                  人生グラフの項目の追加・訂正を行えます。
+                <v-list-item-subtitle id="editSubtitle">
+                  人生グラフの項目の追加・訂正を<br>
+                  行えます。
                 </v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
             <v-card-actions>
-              <v-btn class="white--text" color="#26A69A" to="/new">
+              <v-btn id="entryBtn" block class="white--text" color="#FF6F60" to="/new">
                 編集する
               </v-btn>
             </v-card-actions>
           </v-card>
-        </v-col>
+        </v-col> -->
       </v-row>
       <v-row justify="center">
         <div>
@@ -104,7 +106,7 @@ export default {
     Header
   },
   data: () => ({
-    show: true
+    show: false
   }),
   computed: {
     getContents () {
@@ -118,193 +120,39 @@ export default {
   }
 }
 
-//   created () {
-//     this.$store.dispatch('fetchLogin')
-//   }
-// }
 </script>
 <style>
-/* // #topChart {
-//   position:absolute;
-//   top:400px;
-//   right:200px;
-//   width: 300px;
-//   height: 300px;
-//   margin: 0 auto;
-// }
+#top {
+  background-color: #f4f2ec;
+}
 
-// #topSearchBef   {
-//   position: absolute;
-//   width: 404px;
-//   height: 264px;
-//   left: 263px;
-//   top: 231px;
+#topSearchAft,
+#topEntry {
+  padding: 10px 40px 20px 40px;
+}
 
-//   background: #26A69A;
-//   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-//   border-radius: 2px;
-// }
+#entryTitle,
+#searchTitle {
+  color: #00227b;
+  font-weight: bold;
+  text-align: center;
+}
 
-// #topSearchAft   {
-//   position: absolute;
-//   width: 404px;
-//   height: 264px;
-//   left: 263px;
-//   top: 231px;
+#entrySubtitle,
+#searchSubtitle {
+  color: #00227b;
+  text-align: center;
+}
 
-//   background: #26A69A;
-//   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-//   border-radius: 2px;
-// }
+#searchBtn {
+  background-color: white;
+  color: #00227b;
+  font-weight: bold;
+  margin: 0 auto;
+}
 
-// #topEntry   {
-//   position: absolute;
-//   width: 404px;
-//   height: 264px;
-//   left: 769px;
-//   top: 231px;
-
-//   background: #FFFFFF;
-//   border: 2px solid #26A69A;
-//   box-sizing: border-box;
-//   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-//   border-radius: 2px;
-// }
-
-// #topEdit    {
-//   position: absolute;
-//   width: 404px;
-//   height: 264px;
-//   left: 769px;
-//   top: 231px;
-
-//   background: #FFFFFF;
-//   border: 2px solid #26A69A;
-//   box-sizing: border-box;
-//   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-//   border-radius: 2px;
-// }
-
-// .searchTitle  {
-//   position: absolute;
-//   width: 139px;
-//   height: 42px;
-//   left: 0px;
-//   top: 20px;
-
-//   font-style: normal;
-//   font-weight: bold;
-//   font-size: 36px;
-//   line-height: 42px;
-
-//   color: #FFFFFF;
-// }
-
-// #entryTitle   {
-//   position: absolute;
-//   width: 139px;
-//   height: 42px;
-//   left: 0px;
-//   top: 20px;
-
-//   font-style: normal;
-//   font-weight: bold;
-//   font-size: 36px;
-//   line-height: 42px;
-
-//   color: #777575;
-// }
-
-// #editTitle      {
-//   position: absolute;
-//   width: 139px;
-//   height: 42px;
-//   left: 0px;
-//   top: 20px;
-
-//   font-style: normal;
-//   font-weight: bold;
-//   font-size: 36px;
-//   line-height: 42px;
-
-//   color: #777575;
-// }
-
-// .searchSubtitle {
-//   position: absolute;
-//   width: 353px;
-//   height: 56px;
-//   left: 0px;
-//   top: 100px;
-
-//   font-style: normal;
-//   font-weight: 500;
-//   font-size: 24px;
-//   line-height: 28px;
-
-//   color: #FFFFFF;
-// }
-
-// #entrySubtitle  {
-//   position: absolute;
-//   width: 353px;
-//   height: 56px;
-//   left: 0px;
-//   top: 100px;
-
-//   font-style: normal;
-//   font-weight: 500;
-//   font-size: 24px;
-//   line-height: 28px;
-
-//   color: #777575;
-// }
-
-// #editSubtitle   {
-//   position: absolute;
-//   width: 353px;
-//   height: 56px;
-//   left: 0px;
-//   top: 100px;
-
-//   font-style: normal;
-//   font-weight: 500;
-//   font-size: 24px;
-//   line-height: 28px;
-
-//   color: #777575;
-// }
-
-// .searchBtn    {
-//   position: absolute;
-//   width: 124px;
-//   height: 52px;
-//   left: 210px;
-//   top: 110px;
-
-//   background: #FFFFFF;
-//   border-radius: 2px;
-// }
-
-// #entryBtn     {
-//   position: absolute;
-//   width: 124px;
-//   height: 52px;
-//   left: 200px;
-//   top: 200px;
-
-//   background: #64D8CB;
-//   border-radius: 2px;
-// }
-
-// #editBtn      {
-//   position: absolute;
-//   width: 124px;
-//   height: 52px;
-//   left: 200px;
-//   top: 200px;
-
-//   background: #64D8CB;
-//   border-radius: 2px;
-// } */
+#entryBtn {
+  font-weight: bold;
+  margin: 0 auto;
+}
 </style>

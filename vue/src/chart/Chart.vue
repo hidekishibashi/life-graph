@@ -14,8 +14,8 @@ export default {
           {
             // ここにスコアが入るからlabelsの中は空にする
             data: [],
-            borderColor: '#26A69A',
-            fill: false,
+            backgroundColor: 'rgba(170,182,255,0.1)',
+            borderColor: '#6F74DD',
             lineTension: 0.4
           }
         ]
@@ -31,9 +31,6 @@ export default {
         legend: false,
         scales: {
           xAxes: [{
-          //   scaleLabel: {
-          //     display: true
-          //   },
             gridLines: {
               // 縦線消す
               display: false
@@ -52,7 +49,6 @@ export default {
             ticks: {
               suggestedMax: 100,
               suggestedMin: -100
-              // display: true
             }
           }]
         }
@@ -75,6 +71,7 @@ export default {
     }
   },
   mounted () {
+    // this.$store.commit('resetContents')
     const userId = this.$store.state.auth.userId
     this.$store.dispatch('setContents', userId)
     this.setChart()
@@ -167,15 +164,19 @@ export default {
         // 要素の寸法と、そのビューポートに対する位置
         var position = this._chart.canvas.getBoundingClientRect()
         // 表示、配置、およびフォントスタイルの設定
-        tooltipEl.style.opacity = 1
+        tooltipEl.style.opacity = 0.7
         tooltipEl.style.position = 'absolute'
         tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX + 'px'
         tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY + 'px'
         tooltipEl.style.fontFamily = tooltipModel._bodyFontFamily
-        tooltipEl.style.fontSize = tooltipModel.bodyFontSize + 'px'
+        tooltipEl.style.fontSize = '18px'
         tooltipEl.style.fontStyle = tooltipModel._bodyFontStyle
         tooltipEl.style.padding = tooltipModel.yPadding + 'px ' + tooltipModel.xPadding + 'px'
         tooltipEl.style.pointerEvents = 'none'
+        tooltipEl.style.backgroundColor = 'rgba(57,73,171,0.8)'
+        tooltipEl.style.color = 'white'
+        tooltipEl.style.padding = '10px'
+        tooltipEl.style.width = '250px'
       }
     }
   }

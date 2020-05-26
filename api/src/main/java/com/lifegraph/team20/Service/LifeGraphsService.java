@@ -59,7 +59,7 @@ public class LifeGraphsService {
   private void registerChild(long parentId, LifeGraphData data) {
     // exists parent by userId
     // 子供のIDがあれば、更新する
-    if (repository.existsByUserIdAndAge(parentId, data.getAge())) {
+    if (repository.existsById(data.getId())) {
       // update
     	repository.updateChild(data.getId(), data.getAge(),data.getScore(), data.getComment());
       // 更新した時にすでにageが存在する場合、エラーを出す

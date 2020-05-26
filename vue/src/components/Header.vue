@@ -1,15 +1,14 @@
 <template>
-  <div>
+  <div id="header">
     <v-app-bar
-      color="#26A69A"
+      color="#495183"
       dark
+      flat
     >
-      <v-toolbar-title
-        class="font-weight-bold"
-      >
-        Life Graph
+      <v-toolbar-title>
+        <img class="mt-1 ml-2 mr-2" src="../assets/headerLogo.svg">
       </v-toolbar-title>
-      <v-toolbar-items>
+      <v-toolbar-items class="ml-4">
         <v-btn
           text
           to="/top"
@@ -26,9 +25,20 @@
       <v-spacer />
       <v-toolbar-items>
         <ul>
-          <li>User Name : </li>
-          <li>{{ username }}</li>
-          <li>権限名 : </li>
+          <li>ユーザー名</li>
+          <li
+            class="ma-3"
+          >
+            {{ username }}
+          </li>
+          <li>
+            /
+          </li>
+          <li
+            class="ma-3"
+          >
+            権限名
+          </li>
           <li>{{ authority }}</li>
         </ul>
         <v-divider
@@ -68,11 +78,11 @@ export default {
       this.username = accountInfo.username
       const authority = accountInfo.name
       if (authority === 'ROLE_USER') {
-        this.authority = 'User'
+        this.authority = '一般ユーザー'
       } else if (authority === 'ROLE_ADMIN') {
-        this.authority = 'Administrator'
+        this.authority = '管理者'
       } else {
-        this.authority = 'Owner'
+        this.authority = 'オーナー'
       }
     },
     logout () {
@@ -84,9 +94,15 @@ export default {
 }
 </script>
 <style scoped>
+#header{
+  position: fixed;
+  width: 100%;
+  z-index: 2;
+}
+
 ul {
-  list-style: none;
-  display: flex;
   align-items: center;
+  display: flex;
+  list-style: none;
 }
 </style>
