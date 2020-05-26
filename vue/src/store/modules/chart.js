@@ -7,16 +7,12 @@ Vue.use(Vuex)
 export default {
   state: {
     contents: [],
-    loaded: true
+    loaded: false
   },
   mutations: {
     setContents (state, data) {
       state.contents = data
       state.loaded = !state.loaded
-    },
-    resetContents (state) {
-      state.contents = []
-      state.loaded = true
     }
   },
   actions: {

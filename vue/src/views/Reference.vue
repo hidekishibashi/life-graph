@@ -4,16 +4,16 @@
     <v-container>
       <v-row>
         <v-col>
-          <v-btn id="returnBtn" to="/search" outlined large color="#26A69A">
-            <v-icon />戻る
+          <v-btn id="returnBtn" class="mt-10" to="/life-graph/lists" outlined large color="#495183">
+            戻る
           </v-btn>
         </v-col>
       </v-row>
-      <v-row>
-        <v-col>
-          <div id="refChart" style="width:750px;height:auto" justify="center">
+      <v-row justify="center" class="mb-10">
+        <v-col class="mr-10" cols="12" sm="12" md="8" lg="6">
+          <v-card class="pa-10">
             <Chart />
-          </div>
+          </v-card>
         </v-col>
       </v-row>
     </v-container>
