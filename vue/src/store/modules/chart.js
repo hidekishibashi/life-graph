@@ -13,6 +13,10 @@ export default {
     setContents (state, data) {
       state.contents = data
       state.loaded = !state.loaded
+    },
+    resetContents (state) {
+      state.contents = []
+      state.loaded = true
     }
   },
   actions: {

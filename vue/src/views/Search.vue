@@ -225,6 +225,7 @@ export default {
       return val === search
     },
     reference () {
+      // this.$store.commit('resetContents')
       const Id = this.model
       // this.$store.dispatch('setUserId', { Id: Id.id })
       this.$store.dispatch('setUserRef', { Id: Id.id })
