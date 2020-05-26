@@ -1,7 +1,6 @@
 <template>
   <v-app id="reference">
-    <div id=ref>
-    </div>
+    <div id="ref" />
     <Header />
     <v-container>
       <v-row>

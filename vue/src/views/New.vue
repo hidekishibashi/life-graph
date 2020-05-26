@@ -160,12 +160,12 @@
       </v-data-table> -->
       <!-- <v-row justify-content-right>
         <v-col> -->
-          <v-btn id="enterBtn"  class="my-5"
-            large
-            color="gray" @click="createChart"
-          >
-            確定
-          </v-btn>
+      <v-btn id="enterBtn" class="my-5"
+             large
+             color="gray" @click="createChart"
+      >
+        確定
+      </v-btn>
       <!-- </v-col>
       </v-row> -->
     </v-container>

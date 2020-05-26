@@ -1,7 +1,6 @@
 <template>
   <v-app id="search">
-    <div id=ser>
-    </div>
+    <div id="ser" />
     <Header />
     <br>
     <v-card
@@ -9,7 +8,7 @@
       color="#F4F2EC"
       flat
     >
-     <v-row justify="center">
+      <v-row justify="center">
         <v-col cols="6"
                md="4" max-width="auto"
         >
@@ -39,7 +38,7 @@
           </v-card-text>
         </v-col>
         <v-col />
-        <v-col cols="3" >
+        <v-col cols="3">
           <v-card-text>
             <vue-daterange-picker
               dates-format="YYYY/MM/DD"
@@ -50,14 +49,14 @@
               :end-date="Date()"
               start-place-holder="日時検索"
               end-place-holder=""
-              @get-dates="getDates"
               large
+              @get-dates="getDates"
             />
           </v-card-text>
         </v-col>
       </v-row>
 
-     <v-toolbar max-width="auto" max-height="50"
+      <v-toolbar max-width="auto" max-height="50"
                  class="mx-2" color="#495183"
                  dark
                  flat
@@ -72,7 +71,7 @@
                  dark flat
       >
         <v-row>
-                    <v-col>
+          <v-col>
             <v-card-text class="subtitle-2 font-weight-bold">
               ユーザー名
             </v-card-text>
