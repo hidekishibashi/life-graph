@@ -101,8 +101,8 @@ export default {
 }
 
 ul {
-  list-style: none;
-  display: flex;
   align-items: center;
+  display: flex;
+  list-style: none;
 }
 </style>

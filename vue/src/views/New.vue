@@ -1,7 +1,7 @@
 <template>
   <v-app id="new">
     <Header />
-    <v-container>
+    <v-container id="dataTable">
       <!-- ヘッダーカラム、
       各カラムのデータ呼び出し
       奥ゆきの指定 -->
@@ -20,9 +20,10 @@
               <!-- v-slot:activator={on}でユーザーがモーダル画面を表示 -->
               <template v-slot:activator="{ on }">
                 <v-btn
+                  id="add"
                   class="white--text"
                   large
-                  color="#64D8CB"
+                  color="#FF6F60"
                   v-on="on"
                   @click="click"
                 >
@@ -72,13 +73,13 @@
                 <v-card-actions>
                   <v-spacer />
                   <v-btn
-                    color="teal"
+                    color="#3949AB"
                     text @click="close"
                   >
                     キャンセル
                   </v-btn>
                   <v-btn
-                    color="teal"
+                    color="#3949AB"
                     text @click="save"
                   >
                     登録する
@@ -157,11 +158,16 @@
           </v-dialog>
         </v-toolbar>
       </v-data-table> -->
-      <v-btn
-        @click="createChart"
-      >
-        確定
-      </v-btn>
+      <!-- <v-row justify-content-right>
+        <v-col> -->
+          <v-btn id="enterBtn"  class="my-5"
+            large
+            color="gray" @click="createChart"
+          >
+            確定
+          </v-btn>
+      <!-- </v-col>
+      </v-row> -->
     </v-container>
   </v-app>
 </template>
@@ -331,3 +337,27 @@ export default {
   }
 }
 </script>
+
+<style>
+#new {
+  background-color: #f4f2ec;
+}
+
+#dataTable{
+  margin-top: 100px;
+}
+
+#add{
+  font-weight:bold;
+}
+
+#enterBtn{
+  font-weight:bold;
+  /* margin:0 0 0 auto; */
+}
+
+.theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) {
+  color: white;
+  color: #3949ab;
+}
+</style>

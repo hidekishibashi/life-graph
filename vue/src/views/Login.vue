@@ -103,6 +103,7 @@ export default {
   text-align: center;
   margin: 100px 10px 10px 10px;
 }
+
 /* ログインボタンの文字色 */
 /* .theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined){
   color:white;

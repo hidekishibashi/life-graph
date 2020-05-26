@@ -35,7 +35,7 @@
 </script>
 
 <style scope>
-/*#mainSection {
+/* #mainSection {
   width: 100%;
   height: 420px;
   display: block;
@@ -54,5 +54,5 @@
   width: 400px;
   margin: 0 auto;
   padding-bottom: 15px;
-}*/
+} */
 </style>
