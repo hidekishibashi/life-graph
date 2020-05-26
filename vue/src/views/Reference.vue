@@ -1,10 +1,12 @@
 <template>
   <v-app id="reference">
+    <div id=ref>
+    </div>
     <Header />
     <v-container>
       <v-row>
         <v-col>
-          <v-btn id="returnBtn" to="/search" outlined large color="#26A69A">
+          <v-btn id="returnBtn" to="/life-graph/lists" outlined large color="#26A69A">
             <v-icon />戻る
           </v-btn>
         </v-col>
@@ -81,5 +83,8 @@ export default {
 </script>
 
 <style>
+#ref{
+  padding:30px
+}
 
 </style>
