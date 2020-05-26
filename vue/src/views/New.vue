@@ -24,6 +24,7 @@
                   large
                   color="#64D8CB"
                   v-on="on"
+                  @click="click"
                 >
                   追加する
                 </v-btn>
@@ -200,8 +201,8 @@ export default {
     //   title: ''
     // },
     defaultItem: {
-      age: null,
-      score: null,
+      age: 0,
+      score: 0,
       comment: ''
     },
     // valueがない場合は右のエラー文を表示する。
@@ -240,6 +241,9 @@ export default {
   // },
   methods: {
     // モーダルのフォームデフォルトに登録済みのデータを表示
+    click () {
+      this.dialog = true
+    },
     setContents () {
       this.chartSets = this.$store.state.chart.contents
     },
@@ -247,7 +251,7 @@ export default {
       this.editedIndex = this.chartSets.indexOf(item)
       this.editedItem = Object.assign({}, item)
       // this.editItem = this.chartSets
-      this.dialog = true
+      this.dialog = !this.dialog
     },
     // index番号と一致するレコードの削除
     deleteItem (item) {
@@ -268,7 +272,7 @@ export default {
     },
     // モーダルを閉じ,
     close () {
-      this.dialog = false
+      this.dialog = !this.dialog
       // editedItemの更新
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem)
@@ -284,11 +288,11 @@ export default {
           this.editData()
           // 新規登録
         } else {
-          this.chartSets.push(this.editedItem)
+          // this.chartSets.push(this.editedItem)
           this.saveData()
         }
+        this.close()
       }
-      this.close()
     },
     saveData () {
       // get user_id
@@ -317,11 +321,11 @@ export default {
         this.$store.dispatch('updateContents', userId)
       })
     },
-
     createChart () {
     // メソッド内でconst定義している場合、thisは不要
     // setContentsをdispatchして、lifeChartを渡す。
-      this.$store.dispatch('setContents', this.chartSets)
+      const userId = this.$store.state.auth.userId
+      this.$store.dispatch('setContents', userId)
       this.$router.push('/top')
     }
   }
