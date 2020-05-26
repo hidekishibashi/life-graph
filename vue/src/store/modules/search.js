@@ -1,41 +1,28 @@
+import Vue from 'vue'
+import Vuex from 'vuex'
 import axios from 'axios'
+
+Vue.use(Vuex)
 
 export default {
   state: {
-    token: ''
+    users: [],
+    NUM: '',
+    loaded: false
   },
   mutations: {
-    setSearch (state, data) {
-      state.token = data.token
+    schedule (state, res) {
+      state.users = res
+      state.NUM = res.length
+      state.loaded = !state.loaded
     }
   },
   actions: {
-    fetchSearch ({ commit }, data) {
-      const url = '/api/auth/search'
-      axios.get(url, data).then((res) => {
-        commit('setSearch', res.data)
+    async schedule ({ commit }, dates) {
+      const url = '/api/auth/life-graphs2?startDate=' + dates.dates.startDate + '&endDate=' + dates.dates.endDate
+      axios.get(url).then((res) => {
+        commit('schedule', res.data)
       })
     }
   }
 }
-
-// import axios from 'axios'
-
-// export default {
-//   state: {
-//     search: ''
-//   },
-//   mutations: {
-//     setLogin (state, name, id, created, updated) {
-//       state.search = name, id, created, updated.search
-//     }
-//   },
-//   actions: {
-//     fetchSearch ({ commit }, name, id, created, updated) {
-//       const url = '/api/auth/life-graphs'
-//       axios.get(name, id, created, updated).then((res) => {
-//         commit('setSearch', res.name, id, created, updated)
-//       })
-//     }
-//   }
-// }

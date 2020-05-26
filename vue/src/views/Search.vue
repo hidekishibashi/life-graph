@@ -29,7 +29,7 @@
           </v-card-text>
         </v-col>
         <v-spacer />
-        <v-col cols="4" sm="4">
+        <!-- <v-col cols="4" sm="4">
           <v-card-text>
             <vue-daterange-picker
               dates-format="YYYY/MM/DD"
@@ -44,7 +44,7 @@
               @get-dates="getDates"
             />
           </v-card-text>
-        </v-col>
+        </v-col> -->
       </v-row>
 
       <v-toolbar max-width="1200" max-height="50"
@@ -107,6 +107,33 @@
             </v-btn>
           </v-card-actions>
         </v-content>
+        <!-- <v-toolbar>
+          <li v-for="(index,j) in users" :key="j">
+              <v-col v-for="(field, i) in fields2"
+                     :key="i"
+                     color="#26A69A"
+                     dark
+              >
+                <v-col v-if="field[j].key === 'name'">
+                  iiii
+                  <v-card-text v-text="field[j].value" />
+                </v-col>
+                <v-col v-else-if="field[j].key === 'created'">
+                  ooooo
+                  <v-card-text v-text="field[j].value" />
+                </v-col>
+                <v-col v-else-if="field[j].key === 'updated'">
+                  ppppppppp
+                  <v-card-text v-text="field[j].value" />
+                </v-col>
+              </v-col>
+              <v-card-actions>
+                <v-btn @click="reference()">
+                  表示
+                </v-btn>
+              </v-card-actions>
+          </li>
+        </v-toolbar> -->
       </v-expand-transition>
       <v-card-actions>
         <v-spacer />
@@ -128,14 +155,14 @@
 <script>
 import Header from '../components/Header.vue'
 import moment from 'moment'
-import VueDaterangePicker from 'vue-daterange-picker'
+// import VueDaterangePicker from 'vue-daterange-picker'
 moment.locale('ja')
 export default {
   name: 'Table',
   dialog: false,
   components: {
-    Header,
-    VueDaterangePicker
+    Header
+    // VueDaterangePicker
   },
   data: () => ({
     descriptionLimit: 10,
@@ -146,6 +173,7 @@ export default {
     search_3: null,
     e6: [],
     e7: [],
+    users: [],
     items_2: { name: '', created_at: '' },
     searchByData: [
       '1日前', '1週間前', '1ヶ月前', 'それより前'
@@ -164,6 +192,15 @@ export default {
         }
       })
     },
+    fields2 () {
+      if (!this.model) return []
+      return Object.keys(this.model).map(key => {
+        return {
+          key,
+          value: this.model[key] || 'n/a'
+        }
+      })
+    },
     items () {
       return this.entries.map(entry => {
         const name = entry.name.length > this.descriptionLimit
@@ -172,8 +209,19 @@ export default {
         return Object.assign({}, entry, { name })
       })
     },
+    items2 () {
+      return this.$store.state.search.users.map(entry => {
+        const name = entry.name.length > this.descriptionLimit
+          ? entry.name.slice(0, this.descriptionLimit)
+          : entry.name
+        return Object.assign({}, entry, { name })
+      })
+    },
     search () {
       return this.$store.state.auth.search
+    },
+    loaded () {
+      return this.$store.state.search.loaded
     }
   },
   watch: {
@@ -192,48 +240,52 @@ export default {
         })
         // .catch(err => {
         //   console.log(err)
+        //   console.log('err')
         // })
         .finally(() => (this.isLoading = false))
-      // async mounted () {
-      //   await this.$store.dispatch('searchName')
-      // }
+    },
+    loaded: function () {
+      // const num = this.$store.state.search.NUM
+      this.users = this.$store.state.search.users
     }
-    // search_3 (val) {
-
-    //     // console.log('res')
-    //     // .then(res => res.json())
-    //     .then(function (response) {
-    //       return response.json()
-    //     })
-    //     .then((response) => {
-    //       // const { entries } = response
-    //       this.entries = response
-    //       console.log(this.entries)
-    //       // this.entries = entries
-    //     })
-    //     .catch(err => {
-    //       console.log(err)
-    //       console.log('err')
-    //     })
-    //     .finally(() => (this.isLoading = false))
-    //   // async mounted () {
-    //   //   await this.$store.dispatch('searchName')
-    //   // }
-    // }
   },
+  // mounted () {
+  //   console.log(num)
+  //   console.log('num')
+  // },
+  //   search_3 (val) {
+  //     const url = '/api/auth/life-graphs2'
+  //     fetch(url, this.dates)
+  //       // console.log('res')
+  //       // .then(res => res.json())
+  //       .then(function (response) {
+  //         return response.json()
+  //       })
+  //       .then((response) => {
+  //         // const { entries } = response
+  //         // this.entries = response
+  //         console.log(response)
+  //         // this.entries = entries
+  //       })
+  //       .catch(err => {
+  //         console.log(err)
+  //         console.log('err')
+  //       })
+  //       .finally(() => (this.isLoading = false))
+  //   }
+  // },
   methods: {
-    // getDates: (dates) => {
-    //   // console.log(dates) // Object {startDate: "2017-12-25T00:00:00+09:00", endDate: "2018-01-22T00:00:00+09:00"}
-    //   // 取得した日付をイベントに渡す
+    // getDates: function (dates) {
+    //   this.$store.dispatch('schedule', { dates })
     // },
     filter (val, search) {
       return val === search
     },
     reference () {
-      // this.$store.commit('resetContents')
       const Id = this.model
       // this.$store.dispatch('setUserId', { Id: Id.id })
-      this.$store.dispatch('setUserRef', { Id: Id.id })
+      this.$store.commit('resetContens')
+      this.$store.dispatch('usersContents', Id.id)
       this.$router.push('/reference')
     }
   }

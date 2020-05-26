@@ -60,11 +60,11 @@ export default {
   },
   computed: {
     getContents () {
-      return this.$store.state.chart.contents
+      return this.$store.state.refUser.contents
     },
     // loadedがtrueの時,DOM化するようにする
     loaded () {
-      return this.$store.state.chart.loaded
+      return this.$store.state.refUser.loaded
     }
   },
   // loadedがtureになる時、描画をさせる
@@ -79,9 +79,12 @@ export default {
     console.log('上下')
     console.log(userId)
     console.log('userId')
-    this.$store.dispatch('setContents', userId)
+    // this.$store.dispatch('setContents', userId)
     console.log('setContentsは動かした')
     this.setChart()
+  },
+  destroyed () {
+    this.$store.commit('resetContents')
   },
   methods: {
     setChart () {

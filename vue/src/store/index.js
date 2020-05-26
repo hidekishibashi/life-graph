@@ -4,6 +4,7 @@ import auth from './modules/auth.js'
 import chart from './modules/chart.js'
 import account from './modules/account.js'
 import refUser from './modules/refUser.js'
+import search from './modules/search.js'
 
 // import axios from 'axios'
 Vue.use(Vuex)
@@ -12,6 +13,7 @@ export default new Vuex.Store({
     auth,
     chart,
     account,
-    refUser
+    refUser,
+    search
   }
 })
